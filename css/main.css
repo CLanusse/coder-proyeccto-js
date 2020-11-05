@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -95,22 +96,60 @@ li {
 .header .header__barra .contenedor .header__nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .header .header__barra .contenedor .header__nav .navegacion__link {
-  text-transform: uppercase;
-  font-size: 1.6rem;
-  font-weight: 900;
-  padding: 0.8rem 1.5rem;
-  margin-right: 1rem;
-  transition: all 0.3s;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 2rem;
+  transition: all 0.5s;
+  position: relative;
+}
+.header .header__barra .contenedor .header__nav .navegacion__link:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fe401e;
+  width: 0%;
+  height: 3px;
+  border-top-right-radius: 5px;
+  display: block;
+  opacity: 0;
+  transition: 0.5s;
+}
+.header .header__barra .contenedor .header__nav .navegacion__link:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #fe401e;
+  width: 0%;
+  height: 3px;
+  border-bottom-left-radius: 5px;
+  display: block;
+  opacity: 0;
+  transition: 0.5s;
+}
+.header .header__barra .contenedor .header__nav .navegacion__link:hover {
+  color: #fe401e;
+}
+.header .header__barra .contenedor .header__nav .navegacion__link:hover:before, .header .header__barra .contenedor .header__nav .navegacion__link:hover:after {
+  width: 100%;
+  opacity: 1;
 }
 .header .header__barra .contenedor .header__nav .navegacion__link:last-of-type {
   margin-right: 0;
-  border: 3px #fe401e solid;
+  padding: 0 1rem;
+  border: 2px #fe401e solid;
+  border-radius: 5px;
   color: #fe401e;
 }
-.header .header__barra .contenedor .header__nav .navegacion__link:hover {
-  color: #ffffff;
+.header .header__barra .contenedor .header__nav .navegacion__link:last-of-type:hover:before, .header .header__barra .contenedor .header__nav .navegacion__link:last-of-type:hover:after {
+  width: 0%;
+}
+.header .header__barra .contenedor .header__nav .navegacion__link:last-of-type:hover {
+  color: white;
   background-color: #fe401e;
 }
 .header .contenido-header {
@@ -129,4 +168,53 @@ li {
   font-weight: 700;
   max-width: 800px;
   line-height: 1.4;
+}
+
+.cursos .cursos__lista {
+  width: 60%;
+}
+.cursos .cursos__lista .cursos__item {
+  border: 1px #eee solid;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.cursos .cursos__lista .cursos__item:hover {
+  border: 1px #fe401e solid;
+}
+.cursos .cursos__lista .cursos__item .cursos__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  position: relative;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.cursos .cursos__lista .cursos__item .cursos__header:hover {
+  color: #fe401e;
+}
+.cursos .cursos__lista .cursos__item .cursos__header:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 2rem;
+  z-index: 2;
+}
+.cursos .cursos__lista .cursos__item .cursos__header-active {
+  color: #fe401e;
+}
+.cursos .cursos__lista .cursos__item .cursos__header-active:after {
+  content: "";
+}
+.cursos .cursos__lista .cursos__item .cursos__info {
+  display: none;
+  padding: 2rem;
+  border-top: 1px #fe401e solid;
+  transition: all 0.5s ease-in-out;
+}
+.cursos .cursos__lista .cursos__item .cursos__info-active {
+  display: block;
 }

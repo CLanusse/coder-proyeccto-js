@@ -23,7 +23,7 @@ class Compra {
     }
 }
 
-var nuevoCarritoDeCompras = new CarritoDeCompras;
+var nuevoCarritoDeCompras = new CarritoDeCompras();
 nuevoCarritoDeCompras.tomarDatosIniciales();
 
 // funcion para calcular precio total de los productos 
@@ -43,3 +43,21 @@ function precioFinal(carrito) {
 // nuevoCarritoDeCompras.agregarCompra(nuevaCompra);
 // console.log(nuevoCarritoDeCompras.listaCompras);
 // console.log(precioFinal(nuevoCarritoDeCompras));
+
+
+
+// ============
+// Boton Cursos
+// ============
+
+
+var cursoAccBoton = document.getElementsByClassName("cursos__header");
+var cursoInfo = document.getElementsByClassName("cursos__info");
+console.log(cursoAccBoton);
+console.log(cursoAccBoton[0])
+for (let i = 0; i < cursoAccBoton.length; i++) {
+    cursoAccBoton[i].addEventListener("click", function () {
+        cursoAccBoton[i].classList.toggle("cursos__header-active")
+        cursoInfo[i].classList.toggle("cursos__info-active")
+    })
+}
