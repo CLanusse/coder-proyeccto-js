@@ -202,11 +202,11 @@ li {
     .cursos__lista {
         width: 60%;
         .cursos__item {
-            border: 1px #eee solid;
+            border: 1px #ddd solid;
             border-radius: 10px;
             transition: .3s;
             &:hover {
-                border: 1px $naranja solid;
+                box-shadow: 0px 3px 6px 0 rgba(0, 0, 0, 0.2);
             }
             .cursos__header {
                 display: flex;
@@ -214,7 +214,7 @@ li {
                 align-items: center;
                 padding: 0 2rem;
                 position: relative;
-                transition: .3s;
+                transition: all .3s;
                 cursor: pointer;
                 &:hover {
                     color: $naranja;
@@ -226,9 +226,7 @@ li {
                     position: absolute;
                     top: 8px;
                     right: 20px;
-                    
                     font-size: 2rem;
-                    z-index: 2;
                 }
             }
             .cursos__header-active {
@@ -238,15 +236,24 @@ li {
                 }
             }
             .cursos__info {
-               display: none;
-               padding: 2rem;
-               border-top: 1px $naranja solid;
-               transition: all .5s ease-in-out;            
+                margin: 0 2rem 0rem 2rem;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: all .3s;            
            }
            
            .cursos__info-active {
-                display: block;  
+                opacity: 1;  
+                padding: 1rem 0;
+                max-height: 500px;
+                border-top: 1px $naranja solid;
+                
            }
+        }
+        .cursos__item-active {
+            margin-bottom: 1rem;
+            box-shadow: 0px 3px 6px 0 rgba(0, 0, 0, 0.2);
         }
     }
 }

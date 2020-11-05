@@ -174,12 +174,12 @@ li {
   width: 60%;
 }
 .cursos .cursos__lista .cursos__item {
-  border: 1px #eee solid;
+  border: 1px #ddd solid;
   border-radius: 10px;
   transition: 0.3s;
 }
 .cursos .cursos__lista .cursos__item:hover {
-  border: 1px #fe401e solid;
+  box-shadow: 0px 3px 6px 0 rgba(0, 0, 0, 0.2);
 }
 .cursos .cursos__lista .cursos__item .cursos__header {
   display: flex;
@@ -187,7 +187,7 @@ li {
   align-items: center;
   padding: 0 2rem;
   position: relative;
-  transition: 0.3s;
+  transition: all 0.3s;
   cursor: pointer;
 }
 .cursos .cursos__lista .cursos__item .cursos__header:hover {
@@ -201,7 +201,6 @@ li {
   top: 8px;
   right: 20px;
   font-size: 2rem;
-  z-index: 2;
 }
 .cursos .cursos__lista .cursos__item .cursos__header-active {
   color: #fe401e;
@@ -210,11 +209,19 @@ li {
   content: "";
 }
 .cursos .cursos__lista .cursos__item .cursos__info {
-  display: none;
-  padding: 2rem;
-  border-top: 1px #fe401e solid;
-  transition: all 0.5s ease-in-out;
+  margin: 0 2rem 0rem 2rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s;
 }
 .cursos .cursos__lista .cursos__item .cursos__info-active {
-  display: block;
+  opacity: 1;
+  padding: 1rem 0;
+  max-height: 500px;
+  border-top: 1px #fe401e solid;
+}
+.cursos .cursos__lista .cursos__item-active {
+  margin-bottom: 1rem;
+  box-shadow: 0px 3px 6px 0 rgba(0, 0, 0, 0.2);
 }

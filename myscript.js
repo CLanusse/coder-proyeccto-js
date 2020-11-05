@@ -3,15 +3,22 @@
 class CarritoDeCompras {
     constructor () {
         this.listaCompras = [];
-        this.agregarCompra = function(compra) {
-            this.listaCompras.push(compra);
-            localStorage.setItem('carrito', JSON.stringify(this.listaCompras));
+    }
+    agregarCompra = function(compra) {
+        this.listaCompras.push(compra);
+        localStorage.setItem('carrito', JSON.stringify(this.listaCompras));
+    }
+    tomarDatosIniciales = function() {
+        if (localStorage.getItem('carrito') != null) {
+            this.listaCompras = JSON.parse(localStorage.getItem('carrito'));
         }
-        this.tomarDatosIniciales = function() {
-            if (localStorage.getItem('carrito') != null) {
-                this.listaCompras = JSON.parse(localStorage.getItem('carrito'));
-            }
+    }
+    precioFinal = function () {
+        let precioTotal = 0;
+        for (let compra of this.listaCompras) {
+            precioTotal += compra.precio;
         }
+        return precioTotal;
     }
 }
 
@@ -26,15 +33,6 @@ class Compra {
 var nuevoCarritoDeCompras = new CarritoDeCompras();
 nuevoCarritoDeCompras.tomarDatosIniciales();
 
-// funcion para calcular precio total de los productos 
-function precioFinal(carrito) {
-    let precioTotal = 0;
-    for (let compra of carrito.listaCompras) {
-        precioTotal += compra.precio;
-    }
-    return precioTotal;
-}
-
 // ejemplos para chequear la funcionalidad
 
 // var nuevaCompra = new Compra('Manejo basico', 8500);
@@ -42,7 +40,7 @@ function precioFinal(carrito) {
 // nuevaCompra = new Compra('Gestor', 2500);
 // nuevoCarritoDeCompras.agregarCompra(nuevaCompra);
 // console.log(nuevoCarritoDeCompras.listaCompras);
-// console.log(precioFinal(nuevoCarritoDeCompras));
+// console.log(nuevoCarritoDeCompras.precioFinal());
 
 
 
@@ -53,11 +51,12 @@ function precioFinal(carrito) {
 
 var cursoAccBoton = document.getElementsByClassName("cursos__header");
 var cursoInfo = document.getElementsByClassName("cursos__info");
-console.log(cursoAccBoton);
-console.log(cursoAccBoton[0])
+var cursoItem = document.getElementsByClassName("cursos__item");
+
 for (let i = 0; i < cursoAccBoton.length; i++) {
     cursoAccBoton[i].addEventListener("click", function () {
-        cursoAccBoton[i].classList.toggle("cursos__header-active")
-        cursoInfo[i].classList.toggle("cursos__info-active")
+        cursoAccBoton[i].classList.toggle("cursos__header-active");
+        cursoInfo[i].classList.toggle("cursos__info-active");
+        cursoItem[i].classList.toggle("cursos__item-active");
     })
 }
