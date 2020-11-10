@@ -43,6 +43,26 @@ nuevoCarritoDeCompras.tomarDatosIniciales();
 // console.log(nuevoCarritoDeCompras.precioFinal());
 
 
+// ============
+// Navegacion - Menu mobile
+// ============
+
+var botonMobileAbrir = document.getElementById("nav__mobile-abrir");
+var botonMobileCerrar = document.getElementById("nav__mobile-cerrar");
+var headerNavegacion = document.getElementsByClassName("header__nav");
+var headerLinks = document.getElementsByClassName("navegacion__link");
+
+botonMobileAbrir.addEventListener("click", () => {
+    headerNavegacion[0].classList.toggle("header__nav-active");
+})
+botonMobileCerrar.addEventListener("click", () => {
+    headerNavegacion[0].classList.toggle("header__nav-active");
+})
+for (link of headerLinks) {
+    link.addEventListener("click", () => {
+        headerNavegacion[0].classList.toggle("header__nav-active");
+    })
+}
 
 // ============
 // Boton Cursos

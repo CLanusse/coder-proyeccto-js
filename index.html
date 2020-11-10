@@ -18,11 +18,14 @@
                 <img src="/img/logo-salerno.jpeg" alt="Imagen Logo">
             </a>
 
+            <button id="nav__mobile-abrir"><i class="fas fa-bars"></i></button>
+            
             <nav class="header__nav">             
                     <a href="#nosotros" class="navegacion__link">¿Quienes somos?</a>                   
                     <a href="#cursos" class="navegacion__link">Nuestros Cursos</a>
                     <a href="#contacto" class="navegacion__link">Contacto</a>
-                    <a href="#comprar" class="navegacion__link">Comprar</a>          
+                    <a href="#comprar" class="navegacion__link">Comprar</a>
+                    <button id="nav__mobile-cerrar"><i class="far fa-times-circle"></i></button>          
             </nav>
         </div>
     </div>
@@ -34,6 +37,8 @@
 <main>
     <section id="nosotros" class="nosotros contenedor">
         <h2>¿Quienes somos?</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta numquam nam eligendi iste delectus autem sit nisi magnam. Quibusdam harum, consequuntur voluptatum nisi quisquam officiis omnis. Aperiam est aspernatur ex.</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta numquam nam eligendi iste delectus autem sit nisi magnam. Quibusdam harum, consequuntur voluptatum nisi quisquam officiis omnis. Aperiam est aspernatur ex.</p>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta numquam nam eligendi iste delectus autem sit nisi magnam. Quibusdam harum, consequuntur voluptatum nisi quisquam officiis omnis. Aperiam est aspernatur ex.</p>
     </section>
 
@@ -73,21 +78,44 @@
     <section class="testimonial">
     </section>
 
-    <section id="contacto" class="contacto contenedor">
-        <div class="formulario-contacto__info">
-            <h2>Comunicate con nosotros</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non asperiores rerum quos. Eligendi ratione, aut, exercitationem sed saepe accusantium vitae.</p>
+    <section id="contacto" class="contacto">
+        <div class="contenedor">
+            <div class="contacto__info">
+                <h2>Comunicate con nosotros</h2>
+                <p>Si querés saber más, dejanos un mensaje y nos pondremos en contacto con vos!</p>
+            
+                <form action="#" class="formulario-contacto">
+                    <div>
+                        <input type="text" name="nombre" placeholder="Tu nombre" required class="formulario__input" maxlength="30">
+                        <input type="email" name="email" placeholder="Tu email" required class="formulario__input" maxlength="40">
+                        <input type="tel" name="telefono" placeholder="Tu numero de teléfono" required class="formulario__input">
+                    </div>
+                    <textarea name="mensaje" id="mensaje" required class="formulario__textarea" maxlength="255"></textarea>
+                    <input type="submit" class="formulario__enviar" value="Enviar">
+                </form>
+            </div>
         </div>
-        
-        <form action="#" class="formulario-contacto">
-            <input type="text" name="nombre" placeholder="Tu nombre" required class="formulario__input">
-            <input type="email" name="email" placeholder="Tu email" required class="formulario__input">
-            <input type="tel" name="telefono" placeholder="Tu numero de teléfono" required class="formulario__input">
-            <textarea name="mensaje" id="mensaje" cols="30" rows="10" required class="formulario__textarea"></textarea>
-            <input type="submit" class="boton" value="Enviar">
-        </form>
     </section>
     
+
+    <footer class="footer">
+        <div class="contenedor">
+            <div class="footer__info">
+                <div class="footer__datos">
+                    <h3>Salerno Autoescuela</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>Undiano 554, Bahía Blanca, Bs. As.</p>
+                    <p><i class="fab fa-whatsapp"></i>+54 9 291 455-8749</p>
+                </div>
+            
+                <ul class="footer__media">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
 
 

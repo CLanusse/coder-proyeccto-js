@@ -33,6 +33,7 @@ h2 {
   font-family: "Lato", sans-serif;
   font-size: 3rem;
   font-weight: 700;
+  line-height: 1.4;
 }
 
 h3 {
@@ -89,21 +90,56 @@ li {
   align-items: center;
 }
 .header .header__barra .contenedor .header__logo {
-  width: 22%;
+  width: 50%;
   margin-top: 1rem;
-  padding: 0 2rem;
+  padding-left: 2rem;
+}
+@media (min-width: 576px) {
+  .header .header__barra .contenedor .header__logo {
+    width: 40%;
+  }
+}
+@media (min-width: 768px) {
+  .header .header__barra .contenedor .header__logo {
+    width: 22%;
+  }
 }
 .header .header__barra .contenedor .header__nav {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+@media (min-width: 768px) {
+  .header .header__barra .contenedor .header__nav {
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    box-shadow: unset;
+    transition: unset;
+  }
 }
 .header .header__barra .contenedor .header__nav .navegacion__link {
   font-size: 2rem;
   font-weight: 700;
-  margin-right: 2rem;
   transition: all 0.5s;
   position: relative;
+  margin-top: 1rem;
+}
+@media (min-width: 768px) {
+  .header .header__barra .contenedor .header__nav .navegacion__link {
+    margin-top: 0;
+    margin-right: 2rem;
+  }
 }
 .header .header__barra .contenedor .header__nav .navegacion__link:before {
   content: "";
@@ -144,6 +180,12 @@ li {
   border: 2px #fe401e solid;
   border-radius: 5px;
   color: #fe401e;
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .header .header__barra .contenedor .header__nav .navegacion__link:last-of-type {
+    margin-bottom: 0;
+  }
 }
 .header .header__barra .contenedor .header__nav .navegacion__link:last-of-type:hover:before, .header .header__barra .contenedor .header__nav .navegacion__link:last-of-type:hover:after {
   width: 0%;
@@ -151,6 +193,41 @@ li {
 .header .header__barra .contenedor .header__nav .navegacion__link:last-of-type:hover {
   color: white;
   background-color: #fe401e;
+}
+.header .header__barra .contenedor .header__nav-active {
+  top: 0;
+}
+.header .header__barra .contenedor #nav__mobile-abrir {
+  background-color: white;
+  border: none;
+  font-size: 3rem;
+  color: #fe401e;
+  margin-right: 2rem;
+}
+.header .header__barra .contenedor #nav__mobile-abrir:hover {
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .header .header__barra .contenedor #nav__mobile-abrir {
+    display: none;
+  }
+}
+.header .header__barra .contenedor #nav__mobile-cerrar {
+  background-color: white;
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 3rem;
+  color: #fe401e;
+}
+.header .header__barra .contenedor #nav__mobile-cerrar:hover {
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .header .header__barra .contenedor #nav__mobile-cerrar {
+    display: none;
+  }
 }
 .header .contenido-header {
   position: relative;
@@ -224,4 +301,101 @@ li {
 .cursos .cursos__lista .cursos__item-active {
   margin-bottom: 1rem;
   box-shadow: 0px 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.contacto {
+  background-image: url(../img/imagen-contacto.jpg);
+  background-position: center center;
+  background-size: cover;
+  padding: 3rem 0;
+  margin-top: 4.4rem;
+  min-height: 500px;
+}
+.contacto .contacto__info {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  max-width: 556px;
+}
+.contacto .contacto__info .formulario-contacto {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+}
+.contacto .contacto__info .formulario-contacto .formulario__input, .contacto .contacto__info .formulario-contacto .formulario__textarea {
+  border: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  width: 100%;
+}
+.contacto .contacto__info .formulario-contacto .formulario__input:focus, .contacto .contacto__info .formulario-contacto .formulario__textarea:focus {
+  outline: none;
+  border-bottom: 3px solid #fe401e;
+}
+.contacto .contacto__info .formulario-contacto .formulario__textarea {
+  height: 200px;
+  resize: none;
+}
+.contacto .contacto__info .formulario-contacto .formulario__enviar {
+  align-self: flex-end;
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 90px;
+  font-size: 1.6rem;
+  border: none;
+  background-color: #fe401e;
+  color: white;
+  font-weight: 700;
+}
+.contacto .contacto__info .formulario-contacto .formulario__enviar:hover {
+  cursor: pointer;
+  background-color: #af230a;
+}
+
+.footer {
+  background-color: #222222;
+  padding: 2rem 0;
+}
+.footer i {
+  color: white;
+}
+.footer .footer__info {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+@media (min-width: 576px) {
+  .footer .footer__info {
+    text-align: left;
+    flex-direction: row;
+  }
+}
+.footer .footer__info .footer__datos h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.footer .footer__info .footer__datos p {
+  font-size: 1.4rem;
+}
+.footer .footer__info .footer__datos i {
+  font-size: 1.8rem;
+  margin-right: 1rem;
+}
+.footer .footer__media {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.footer .footer__media i {
+  font-size: 2.4rem;
+  margin: 0 1.6rem;
+}
+@media (min-width: 576px) {
+  .footer .footer__media {
+    margin-top: 0;
+  }
 }

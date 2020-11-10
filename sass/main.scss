@@ -44,6 +44,7 @@ h2 {
     font-family: $fuente;
     font-size: 3rem;
     font-weight: 700;
+    line-height: 1.4;
 }
 h3 {
     font-family: $fuente;
@@ -87,8 +88,7 @@ li {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.2);
-        
+        background-color: rgba(0, 0, 0, 0.2);        
     }
 
     .header__barra {
@@ -103,23 +103,47 @@ li {
         justify-content: space-between;
         align-items: center;
             .header__logo {
-                width: 22%;
+                width: 50%;
                 margin-top: 1rem;
-                padding: 0 2rem;
-                          
+                padding-left: 2rem;
+                @media (min-width: 576px) {
+                    width: 40%;
+                }
+                @media (min-width: 768px) {
+                    width:22%;
+                }
             }
             .header__nav {
                 display: flex;
-                justify-content: space-between;
+                flex-direction: column;
+                justify-content: center;
                 align-items: center;
-                    .navegacion__link {
-                       
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                background: #ffffff;
+                box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .5);
+                transition: .5s;
+                @media (min-width: 768px) {
+                    position: relative;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: auto;
+                    box-shadow: unset;
+                    transition: unset;
+                    }
+                    .navegacion__link {                      
                         font-size: 2rem;
                         font-weight: 700;
-                        
-                        margin-right: 2rem;
                         transition: all .5s;
                         position: relative;
+                        margin-top: 1rem;
+                        @media (min-width: 768px){
+                            margin-top: 0;
+                            margin-right: 2rem;
+                        }
                         &:before {
                             content: "";
                             position: absolute;
@@ -161,6 +185,10 @@ li {
                             border: 2px $naranja solid;
                             border-radius: 5px;
                             color: $naranja;
+                            margin-bottom: 1rem;
+                            @media (min-width: 768px) {
+                                margin-bottom: 0;
+                            }
                         }    
                         &:last-of-type:hover:before,
                         &:last-of-type:hover:after {
@@ -170,7 +198,39 @@ li {
                             color: white;
                             background-color: $naranja;
                         }                  
-                    }           
+                    }
+                    
+            }
+            .header__nav-active {
+                top: 0;
+            }
+            #nav__mobile-abrir {
+                background-color: white;
+                border: none;
+                font-size: 3rem;
+                color: $naranja;
+                margin-right: 2rem;
+                &:hover {
+                    cursor: pointer;
+                }
+                @media (min-width: 768px) {
+                    display: none;
+                }
+            }
+            #nav__mobile-cerrar {
+                background-color: white;
+                border: none;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                font-size: 3rem;
+                color: $naranja;
+                &:hover {
+                    cursor: pointer;
+                }
+                @media (min-width: 768px) {
+                    display: none;
+                }
             }
         }
     }
@@ -258,3 +318,106 @@ li {
     }
 }
 
+// ========
+// CONTACTO
+// ========
+
+
+.contacto {
+    background-image: url(../img/imagen-contacto.jpg);
+    background-position: center center;
+    background-size: cover;
+    padding: 3rem 0;
+    margin-top: 4.4rem;
+    min-height: 500px;
+    .contacto__info {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 16px;
+        padding: 2rem 3rem;
+        max-width: 556px;
+        .formulario-contacto {
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            .formulario__input, .formulario__textarea {
+                border: none;
+                margin-top: 1rem;
+                padding: 1rem;
+                border-radius: 4px;
+                width: 100%;
+                &:focus {
+                    outline: none;
+                    border-bottom: 3px solid $naranja;
+                }
+            }
+            .formulario__textarea {
+                height: 200px;
+                resize: none;
+            }
+            .formulario__enviar {
+                align-self: flex-end;
+                margin-top: 1rem;
+                padding: 1rem;
+                width: 90px;
+                font-size: 1.6rem;
+                border: none;
+                background-color: $naranja;
+                color: white;
+                font-weight: 700;
+                &:hover {
+                    cursor: pointer;
+                    background-color: $naranjaOscuro;
+                }
+            }
+        }
+    }
+}
+// ======
+// FOOTER
+//=======
+
+.footer {
+    background-color: rgb(34, 34, 34);
+    padding: 2rem 0;
+    i {
+        color: white;
+        
+    }
+    .footer__info {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        @media (min-width: 576px) {
+            text-align: left;
+            flex-direction: row;
+        }
+        .footer__datos {
+            h3 {
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+            p {
+                font-size: 1.4rem;
+            }
+            i {
+                font-size: 1.8rem;
+                margin-right: 1rem;
+            }
+        }
+    }
+    .footer__media {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        i {
+            font-size: 2.4rem;
+            margin: 0 1.6rem;
+        }
+        @media (min-width: 576px) {
+            margin-top: 0;
+        }
+    }
+}
