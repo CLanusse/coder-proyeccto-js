@@ -101,7 +101,7 @@ contactoNombre.addEventListener("change", () => {
 
 contactoEmail.addEventListener("change", () => {
     let label = document.getElementById("label-email");
-    if (contactoEmail.value.indexOf("@") == -1 | contactoEmail.value.indexOf(".") == -1) {
+    if (contactoEmail.value.indexOf("@") == -1 | contactoEmail.value.indexOf(".") == -1 | contactoEmail.value.indexOf(" ") != -1) {
         label.innerHTML = "* Formato de email no válido (Ejemplo: nombre@email.com)";
     } else {
         label.innerHTML = "";
