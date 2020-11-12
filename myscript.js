@@ -33,15 +33,6 @@ class Compra {
 var nuevoCarritoDeCompras = new CarritoDeCompras();
 nuevoCarritoDeCompras.tomarDatosIniciales();
 
-// ejemplos para chequear la funcionalidad
-
-// var nuevaCompra = new Compra('Manejo basico', 8500);
-// nuevoCarritoDeCompras.agregarCompra(nuevaCompra);
-// nuevaCompra = new Compra('Gestor', 2500);
-// nuevoCarritoDeCompras.agregarCompra(nuevaCompra);
-// console.log(nuevoCarritoDeCompras.listaCompras);
-// console.log(nuevoCarritoDeCompras.precioFinal());
-
 
 // ============
 // Navegacion - Menu mobile
@@ -80,3 +71,64 @@ for (let i = 0; i < cursoAccBoton.length; i++) {
         cursoItem[i].classList.toggle("cursos__item-active");
     })
 }
+
+//=============
+// Validar form
+//=============
+
+var contactoNombre = document.getElementById("contacto-nombre");
+var contactoEmail = document.getElementById("contacto-email");
+var contactoTelefono = document.getElementById("contacto-telefono");
+var contactoMensaje = document.getElementById("contacto-mensaje");
+
+
+contactoNombre.addEventListener("change", () => {
+    let numberCheck;
+    let label = document.getElementById("label-nombre");
+    for (caracter of contactoNombre.value) {
+        if (!isNaN(caracter)) {
+            numberCheck = true;
+        } else {
+            numberCheck = false;
+        }
+    }
+    if ((contactoNombre.value.length < 3) | (contactoNombre.value.length > 30) | numberCheck === true) {    
+        label.innerHTML = "*Por favor, ingresa un nombre válido (Ejemplo: Juan Perez)";
+    } else {
+        label.innerHTML = "";
+    }
+})
+
+contactoEmail.addEventListener("change", () => {
+    let label = document.getElementById("label-email");
+    if (contactoEmail.value.indexOf("@") == -1 | contactoEmail.value.indexOf(".") == -1) {
+        label.innerHTML = "* Formato de email no válido (Ejemplo: nombre@email.com)";
+    } else {
+        label.innerHTML = "";
+    }
+})
+
+contactoTelefono.addEventListener("change", () => {
+    let label = document.getElementById("label-telefono");
+    if (contactoTelefono.value.length < 7 | contactoTelefono.value.length > 16) {
+        label.innerHTML = "* Número telefónico no válido";
+    } else {
+        label.innerHTML = "";
+    }
+    for (caracter of contactoTelefono.value) {
+        if (isNaN(caracter) == true) {
+            label.innerHTML = "* Ingresa sólo números válidos, sin otros caracteres (Ej: 02914445555)"
+        }
+    }
+})
+
+contactoMensaje.addEventListener("change", () => {
+    let label = document.getElementById("label-mensaje");
+    if (contactoMensaje.value.length < 5) {
+        label.innerHTML = "* Por favor, déjanos una consulta :)"
+    } else {
+        label.innerHTML = "";
+    }
+})
+
+

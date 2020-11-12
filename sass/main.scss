@@ -27,6 +27,7 @@ html {
     font-size: 62.5%;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    scroll-padding-block-start: 90px;
 }
 body {
     font-family: $fuente;
@@ -212,6 +213,10 @@ li {
                 margin-right: 2rem;
                 &:hover {
                     cursor: pointer;
+                    color: $naranjaOscuro;
+                }
+                &:focus {
+                    outline:none;
                 }
                 @media (min-width: 768px) {
                     display: none;
@@ -227,6 +232,10 @@ li {
                 color: $naranja;
                 &:hover {
                     cursor: pointer;
+                    color: $naranjaOscuro;
+                }
+                &:focus {
+                    outline:none;
                 }
                 @media (min-width: 768px) {
                     display: none;
@@ -260,7 +269,7 @@ li {
 
 .cursos {
     .cursos__lista {
-        width: 60%;
+        max-width: 650px;
         .cursos__item {
             border: 1px #ddd solid;
             border-radius: 10px;
@@ -339,6 +348,12 @@ li {
             margin: 2rem 0;
             display: flex;
             flex-direction: column;
+            label {
+                color: rgba(255, 0, 0, 0.726);
+                margin-top: -4px;
+                font-size: 1.4rem;
+                padding-left: 10px;
+            }
             .formulario__input, .formulario__textarea {
                 border: none;
                 margin-top: 1rem;
@@ -364,6 +379,10 @@ li {
                 background-color: $naranja;
                 color: white;
                 font-weight: 700;
+                &:focus {
+                    outline: none;
+                    background-color: $naranjaOscuro;
+                }
                 &:hover {
                     cursor: pointer;
                     background-color: $naranjaOscuro;

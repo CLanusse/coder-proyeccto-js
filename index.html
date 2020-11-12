@@ -85,12 +85,14 @@
                 <p>Si querés saber más, dejanos un mensaje y nos pondremos en contacto con vos!</p>
             
                 <form action="#" class="formulario-contacto">
-                    <div>
-                        <input type="text" name="nombre" placeholder="Tu nombre" required class="formulario__input" maxlength="30">
-                        <input type="email" name="email" placeholder="Tu email" required class="formulario__input" maxlength="40">
-                        <input type="tel" name="telefono" placeholder="Tu numero de teléfono" required class="formulario__input">
-                    </div>
-                    <textarea name="mensaje" id="mensaje" required class="formulario__textarea" maxlength="255"></textarea>
+                    <input type="text" id="contacto-nombre" name="nombre" placeholder="Tu nombre"  class="formulario__input" maxlength="30">
+                    <label id="label-nombre" for="contacto-nombre"></label>
+                    <input type="email" id="contacto-email" name="email" placeholder="Tu email"  class="formulario__input" maxlength="40">
+                    <label id="label-email" for="contacto-email"></label>
+                    <input type="tel" id="contacto-telefono" name="telefono" placeholder="Tu numero de teléfono"  class="formulario__input">           
+                    <label id="label-telefono" for="contacto-telefono"></label>
+                    <textarea name="mensaje" id="contacto-mensaje"  class="formulario__textarea" maxlength="255"></textarea>
+                    <label id="label-mensaje"for="contacto-mensaje"></label>
                     <input type="submit" class="formulario__enviar" value="Enviar">
                 </form>
             </div>

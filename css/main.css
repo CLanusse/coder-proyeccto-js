@@ -14,6 +14,7 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  scroll-padding-block-start: 90px;
 }
 
 body {
@@ -206,6 +207,10 @@ li {
 }
 .header .header__barra .contenedor #nav__mobile-abrir:hover {
   cursor: pointer;
+  color: #af230a;
+}
+.header .header__barra .contenedor #nav__mobile-abrir:focus {
+  outline: none;
 }
 @media (min-width: 768px) {
   .header .header__barra .contenedor #nav__mobile-abrir {
@@ -223,6 +228,10 @@ li {
 }
 .header .header__barra .contenedor #nav__mobile-cerrar:hover {
   cursor: pointer;
+  color: #af230a;
+}
+.header .header__barra .contenedor #nav__mobile-cerrar:focus {
+  outline: none;
 }
 @media (min-width: 768px) {
   .header .header__barra .contenedor #nav__mobile-cerrar {
@@ -248,7 +257,7 @@ li {
 }
 
 .cursos .cursos__lista {
-  width: 60%;
+  max-width: 650px;
 }
 .cursos .cursos__lista .cursos__item {
   border: 1px #ddd solid;
@@ -322,6 +331,12 @@ li {
   display: flex;
   flex-direction: column;
 }
+.contacto .contacto__info .formulario-contacto label {
+  color: rgba(255, 0, 0, 0.726);
+  margin-top: -4px;
+  font-size: 1.4rem;
+  padding-left: 10px;
+}
 .contacto .contacto__info .formulario-contacto .formulario__input, .contacto .contacto__info .formulario-contacto .formulario__textarea {
   border: none;
   margin-top: 1rem;
@@ -347,6 +362,10 @@ li {
   background-color: #fe401e;
   color: white;
   font-weight: 700;
+}
+.contacto .contacto__info .formulario-contacto .formulario__enviar:focus {
+  outline: none;
+  background-color: #af230a;
 }
 .contacto .contacto__info .formulario-contacto .formulario__enviar:hover {
   cursor: pointer;
