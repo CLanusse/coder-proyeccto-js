@@ -38,22 +38,20 @@ nuevoCarritoDeCompras.tomarDatosIniciales();
 // Navegacion - Menu mobile
 // ============
 
-var botonMobileAbrir = document.getElementById("nav__mobile-abrir");
-var botonMobileCerrar = document.getElementById("nav__mobile-cerrar");
-var headerNavegacion = document.getElementsByClassName("header__nav");
-var headerLinks = document.getElementsByClassName("navegacion__link");
+var botonMobileAbrir = $("#nav__mobile-abrir");
+var botonMobileCerrar = $("#nav__mobile-cerrar");
+var headerNavegacion = $(".header__nav");
+var headerLinks = $(".navegacion__link");
 
-botonMobileAbrir.addEventListener("click", () => {
-    headerNavegacion[0].classList.toggle("header__nav-active");
+botonMobileAbrir.click( () => {
+    headerNavegacion.addClass("header__nav-active");
 })
-botonMobileCerrar.addEventListener("click", () => {
-    headerNavegacion[0].classList.toggle("header__nav-active");
+botonMobileCerrar.click( () => {
+    headerNavegacion.removeClass("header__nav-active");
 })
-for (link of headerLinks) {
-    link.addEventListener("click", () => {
-        headerNavegacion[0].classList.toggle("header__nav-active");
-    })
-}
+headerLinks.click( ()=> {
+    headerNavegacion.removeClass("header__nav-active")
+})
 
 // ============
 // Boton Cursos
@@ -71,6 +69,8 @@ for (let i = 0; i < cursoAccBoton.length; i++) {
         cursoItem[i].classList.toggle("cursos__item-active");
     })
 }
+
+
 
 //=============
 // Validar form
