@@ -7,8 +7,9 @@
     <script src="https://kit.fontawesome.com/df59baf6b8.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script defer src="myscript.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+    <script src="/js/jquery.js"></script>
+    <script defer src="/js/myscript.js"></script>
 </head>
 <body>
     
@@ -25,7 +26,7 @@
                     <a href="#nosotros" class="navegacion__link">¿Quienes somos?</a>                   
                     <a href="#cursos" class="navegacion__link">Nuestros Cursos</a>
                     <a href="#contacto" class="navegacion__link">Contacto</a>
-                    <a href="#comprar" class="navegacion__link">Comprar</a>
+                    <a href="#comprar" class="navegacion__link" id="comprar-abrir">Comprar</a>
                     <button id="nav__mobile-cerrar"><i class="far fa-times-circle"></i></button>          
             </nav>
         </div>
@@ -35,7 +36,7 @@
     </div>
 </header>
 
-<main>
+
     <section id="nosotros" class="nosotros contenedor">
         <h2>¿Quienes somos?</h2>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta numquam nam eligendi iste delectus autem sit nisi magnam. Quibusdam harum, consequuntur voluptatum nisi quisquam officiis omnis. Aperiam est aspernatur ex.</p>
@@ -46,7 +47,7 @@
     <setion class="banner-ofertas">
     </setion>
 
-    <section id="cursos" class="cursos contenedor">
+    <main id="cursos" class="cursos contenedor">
         <h2>Nuestros cursos</h2>
         <ul class="cursos__lista">
             <li class="cursos__item">
@@ -74,7 +75,7 @@
                 </div>
             </li>
         </ul>
-    </section>
+    </main>
 
     <section class="testimonial">
     </section>
@@ -100,6 +101,35 @@
         </div>
     </section>
     
+    <section id="comprar" class="comprar">
+        <div class="contenedor__compra" id="contenedor__compra">
+            <div class="contenedor__barra-progreso">
+                <div class="barra-progreso">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <i id="autito" class="fas fa-car-side autito"></i>
+                </div>
+            </div>
+            <form id="formulario__compra" class="formulario__compra">
+                <div class="compra__slide" id="compra__datosPersonales">
+                    <h3>Datos Personales</h3>
+                </div>
+                <div class="compra__slide" id="compra__cursos">
+                    <h3>Elegí tu curso</h3>
+                </div>
+                <div class="compra__slide" id="compra__fechas">
+                    <h3>Fecha y horario</h3>
+                </div>
+                <div class="compra__slide" id="compra__resumen">
+                    <h3>Resumen de compra</h3>
+                </div>
+            </form>
+            <button id="comprar-cerrar"><i class="far fa-times-circle"></i></button>
+            <button class="compra__boton" id="boton__volver">Volver</button>
+            <button class="compra__boton" id="boton__siguiente">Siguiente</button>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="contenedor">
@@ -123,7 +153,7 @@
 
 
 
-</main>
+
 
 
 </body>

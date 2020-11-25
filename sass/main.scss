@@ -34,6 +34,7 @@ body {
     font-size: 1.6rem;
     line-height: 2;
     color: $negro;
+    padding-top: 50px;
 }
 
 h1 {
@@ -96,6 +97,7 @@ li {
         background-color: white;
         position: fixed;
         width: 100%;
+        margin-top: -50px;
         z-index: 2;
         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .5);
 
@@ -103,16 +105,9 @@ li {
         display: flex;
         justify-content: space-between;
         align-items: center;
-            .header__logo {
-                width: 50%;
+            .header__logo img {
+                height: 10vh;
                 margin-top: 1rem;
-                padding-left: 2rem;
-                @media (min-width: 576px) {
-                    width: 40%;
-                }
-                @media (min-width: 768px) {
-                    width:22%;
-                }
             }
             .header__nav {
                 display: flex;
@@ -331,7 +326,6 @@ li {
 // CONTACTO
 // ========
 
-
 .contacto {
     background-image: url(../img/imagen-contacto.jpg);
     background-position: center center;
@@ -391,6 +385,155 @@ li {
         }
     }
 }
+// ==================
+// FORMULARIO COMPRAR
+// ==================
+
+.comprar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(255, 154, 71, .7);
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s;
+    .contenedor__compra {
+        height: 400px;
+        width: 500px;
+        background-color:#fff;
+        position: relative;
+        border-radius: 10px;
+        margin-top: -150%;
+        transition: all ease-in-out .3s;
+
+        #comprar-cerrar, .compra__boton {
+            border: none;
+            position: absolute;
+            font-size: 2rem;
+            background: none;
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        #comprar-cerrar {
+            left: -30px;
+            top: -30px;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        .compra__boton {
+            padding: 1rem 1.6rem;
+            font-weight: 700;
+            &:nth-of-type(2) {
+                bottom: 1.4rem;
+                left: 15%;
+                color: $naranja;
+                padding: .8rem 1.6rem;
+                border: 2px solid $naranja;
+                &:hover {
+                    color: $naranjaOscuro;
+                    border-color: $naranjaOscuro;
+                }
+                &:before {
+                    font-family: "Font Awesome 5 Free"; 
+                    font-weight: 900; 
+                    content: "\f100";
+                    padding-right: .6rem;
+                }
+                @media (max-width: 556px) {
+                    left: 5%;
+                }
+            }
+            &:nth-of-type(3) {
+                bottom: 1.4rem;
+                right: 15%;
+                color: #fff;
+                background-color: $naranja;
+                &:hover {
+                    background-color: $naranjaOscuro;
+                }
+                &:after {
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    content: "\f101";
+                    padding-left: .6rem;
+                }
+                @media (max-width: 556px) {
+                    right: 5%;
+                }
+            }
+        }
+        .contenedor__barra-progreso {
+            width: 100%;
+            padding: 3rem 7.5%;
+            .barra-progreso {
+                width: 100%;
+                height: .8rem;
+                // margin: 1rem;
+                background-color: rgb(218, 218, 218);
+                display: flex;
+                border-radius: 4px;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+                .dot {
+                    height: 2.4rem;
+                    width: 2.4rem;
+                    padding: 1rem;
+                    border-radius: 50%;
+                    background-color:rgb(218, 218, 218);
+                    &:nth-of-type(1) {
+                        order: 1;
+                    }
+                    &:nth-of-type(2) {
+                        order: 2;
+                    }
+                    &:nth-of-type(3) {
+                        order: 3;
+                    }
+                }
+                .autito {
+                    order: 0;
+                    font-size: 2.4rem;
+                    padding: 1rem;
+                    border-radius: 50%;
+                    padding: .4rem;
+                    color: $naranja;
+                }
+            }
+        }
+            
+        .formulario__compra {
+            display: flex;
+            padding-bottom: 4rem;
+            overflow: hidden;
+            .compra__slide {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+
+
+        }
+    }
+    .contenedor__compra-active {
+        margin-top: 0;
+        transition: all ease-in-out .5s .2s;
+    }
+}
+.comprar-active {
+    visibility: visible;
+    opacity: 1;
+}
+
 // ======
 // FOOTER
 //=======

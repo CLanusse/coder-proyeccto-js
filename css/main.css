@@ -22,6 +22,7 @@ body {
   font-size: 1.6rem;
   line-height: 2;
   color: #111111;
+  padding-top: 50px;
 }
 
 h1 {
@@ -82,6 +83,7 @@ li {
   background-color: white;
   position: fixed;
   width: 100%;
+  margin-top: -50px;
   z-index: 2;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.5);
 }
@@ -90,20 +92,9 @@ li {
   justify-content: space-between;
   align-items: center;
 }
-.header .header__barra .contenedor .header__logo {
-  width: 50%;
+.header .header__barra .contenedor .header__logo img {
+  height: 10vh;
   margin-top: 1rem;
-  padding-left: 2rem;
-}
-@media (min-width: 576px) {
-  .header .header__barra .contenedor .header__logo {
-    width: 40%;
-  }
-}
-@media (min-width: 768px) {
-  .header .header__barra .contenedor .header__logo {
-    width: 22%;
-  }
 }
 .header .header__barra .contenedor .header__nav {
   display: flex;
@@ -370,6 +361,151 @@ li {
 .contacto .contacto__info .formulario-contacto .formulario__enviar:hover {
   cursor: pointer;
   background-color: #af230a;
+}
+
+.comprar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(255, 154, 71, 0.7);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+}
+.comprar .contenedor__compra {
+  height: 400px;
+  width: 500px;
+  background-color: #fff;
+  position: relative;
+  border-radius: 10px;
+  margin-top: -150%;
+  transition: all ease-in-out 0.3s;
+}
+.comprar .contenedor__compra #comprar-cerrar, .comprar .contenedor__compra .compra__boton {
+  border: none;
+  position: absolute;
+  font-size: 2rem;
+  background: none;
+}
+.comprar .contenedor__compra #comprar-cerrar:focus, .comprar .contenedor__compra .compra__boton:focus {
+  outline: none;
+}
+.comprar .contenedor__compra #comprar-cerrar:hover, .comprar .contenedor__compra .compra__boton:hover {
+  cursor: pointer;
+}
+.comprar .contenedor__compra #comprar-cerrar {
+  left: -30px;
+  top: -30px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+}
+.comprar .contenedor__compra .compra__boton {
+  padding: 1rem 1.6rem;
+  font-weight: 700;
+}
+.comprar .contenedor__compra .compra__boton:nth-of-type(2) {
+  bottom: 1.4rem;
+  left: 15%;
+  color: #fe401e;
+  padding: 0.8rem 1.6rem;
+  border: 2px solid #fe401e;
+}
+.comprar .contenedor__compra .compra__boton:nth-of-type(2):hover {
+  color: #af230a;
+  border-color: #af230a;
+}
+.comprar .contenedor__compra .compra__boton:nth-of-type(2):before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "";
+  padding-right: 0.6rem;
+}
+@media (max-width: 556px) {
+  .comprar .contenedor__compra .compra__boton:nth-of-type(2) {
+    left: 5%;
+  }
+}
+.comprar .contenedor__compra .compra__boton:nth-of-type(3) {
+  bottom: 1.4rem;
+  right: 15%;
+  color: #fff;
+  background-color: #fe401e;
+}
+.comprar .contenedor__compra .compra__boton:nth-of-type(3):hover {
+  background-color: #af230a;
+}
+.comprar .contenedor__compra .compra__boton:nth-of-type(3):after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "";
+  padding-left: 0.6rem;
+}
+@media (max-width: 556px) {
+  .comprar .contenedor__compra .compra__boton:nth-of-type(3) {
+    right: 5%;
+  }
+}
+.comprar .contenedor__compra .contenedor__barra-progreso {
+  width: 100%;
+  padding: 3rem 7.5%;
+}
+.comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso {
+  width: 100%;
+  height: 0.8rem;
+  background-color: #dadada;
+  display: flex;
+  border-radius: 4px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso .dot {
+  height: 2.4rem;
+  width: 2.4rem;
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: #dadada;
+}
+.comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso .dot:nth-of-type(1) {
+  order: 1;
+}
+.comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso .dot:nth-of-type(2) {
+  order: 2;
+}
+.comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso .dot:nth-of-type(3) {
+  order: 3;
+}
+.comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso .autito {
+  order: 0;
+  font-size: 2.4rem;
+  padding: 1rem;
+  border-radius: 50%;
+  padding: 0.4rem;
+  color: #fe401e;
+}
+.comprar .contenedor__compra .formulario__compra {
+  display: flex;
+  padding-bottom: 4rem;
+  overflow: hidden;
+}
+.comprar .contenedor__compra .formulario__compra .compra__slide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+.comprar .contenedor__compra-active {
+  margin-top: 0;
+  transition: all ease-in-out 0.5s 0.2s;
+}
+
+.comprar-active {
+  visibility: visible;
+  opacity: 1;
 }
 
 .footer {

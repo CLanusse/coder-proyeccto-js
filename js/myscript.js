@@ -73,13 +73,13 @@ for (let i = 0; i < cursoAccBoton.length; i++) {
 
 
 //=============
-// Validar form
+// Validar form contacto
 //=============
 
-var contactoNombre = document.getElementById("contacto-nombre");
-var contactoEmail = document.getElementById("contacto-email");
-var contactoTelefono = document.getElementById("contacto-telefono");
-var contactoMensaje = document.getElementById("contacto-mensaje");
+const contactoNombre = document.getElementById("contacto-nombre");
+const contactoEmail = document.getElementById("contacto-email");
+const contactoTelefono = document.getElementById("contacto-telefono");
+const contactoMensaje = document.getElementById("contacto-mensaje");
 
 
 contactoNombre.addEventListener("change", () => {
@@ -131,4 +131,44 @@ contactoMensaje.addEventListener("change", () => {
     }
 })
 
+// =================
+// FROMULARIO COMPRA
+// =================
+
+const comprarAbrir = document.getElementById('comprar-abrir');
+const comprarCerrar = document.getElementById('comprar-cerrar');
+const modalComprar = document.getElementById('comprar');
+const contenedorComprar = document.getElementById('contenedor__compra')
+
+comprarAbrir.addEventListener('click', ()=> {
+    modalComprar.classList.add("comprar-active");
+    modalComprar.firstElementChild.classList.add("contenedor__compra-active");
+})
+comprarCerrar.addEventListener('click', ()=> {
+    modalComprar.classList.remove("comprar-active");
+    modalComprar.firstElementChild.classList.remove("contenedor__compra-active");
+})
+contenedorComprar.addEventListener('click', (e) => {
+    e.stopPropagation();
+})
+modalComprar.addEventListener('click', ()=> {
+    modalComprar.classList.remove("comprar-active");
+    modalComprar.firstElementChild.classList.remove("contenedor__compra-active");
+})
+
+let slideIndex = 0;
+
+const autito = document.getElementById("autito");
+
+const botonSiguiente = document.getElementById('boton__siguiente');
+const botonVolver = document.getElementById('boton__volver');
+
+botonSiguiente.addEventListener('click', ()=> {
+    slideIndex += 1;
+    autito.style.order = slideIndex;
+})
+botonVolver.addEventListener('click', ()=> {
+    slideIndex -=1;
+    autito.style.order = slideIndex;
+})
 
