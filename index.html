@@ -89,7 +89,7 @@
                 <form action="#" class="formulario-contacto">
                     <input type="text" id="contacto-nombre" name="nombre" placeholder="Tu nombre"  class="formulario__input" maxlength="30">
                     <label id="label-nombre" for="contacto-nombre"></label>
-                    <input type="email" id="contacto-email" name="email" placeholder="Tu email"  class="formulario__input" maxlength="40">
+                    <input type="email" id="contacto-email" name="email" placeholder="Tu email"  class="formulario__input" maxlength="45">
                     <label id="label-email" for="contacto-email"></label>
                     <input type="tel" id="contacto-telefono" name="telefono" placeholder="Tu numero de teléfono"  class="formulario__input">           
                     <label id="label-telefono" for="contacto-telefono"></label>
@@ -105,26 +105,47 @@
         <div class="contenedor__compra" id="contenedor__compra">
             <div class="contenedor__barra-progreso">
                 <div class="barra-progreso">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                    <span class="dot"><i class="fas fa-check"></i></span>
+                    <span class="dot"><i class="fas fa-check"></i></span>
+                    <span class="dot"><i class="fas fa-check"></i></span>
+                    <span class="dot"><i class="fas fa-check"></i></span>
+                    <span class="line" id="line"></span>
                     <i id="autito" class="fas fa-car-side autito"></i>
                 </div>
             </div>
-            <form id="formulario__compra" class="formulario__compra">
-                <div class="compra__slide" id="compra__datosPersonales">
-                    <h3>Datos Personales</h3>
-                </div>
-                <div class="compra__slide" id="compra__cursos">
-                    <h3>Elegí tu curso</h3>
-                </div>
-                <div class="compra__slide" id="compra__fechas">
-                    <h3>Fecha y horario</h3>
-                </div>
-                <div class="compra__slide" id="compra__resumen">
-                    <h3>Resumen de compra</h3>
-                </div>
-            </form>
+            <div class="compra__carousel">
+                <form id="formulario__compra" class="formulario__compra">
+                    <div class="compra__slide" id="compra__datosPersonales">
+                        <h3>Datos Personales</h3>
+                        <p>Ingresá tus datos para adquirir nuestros servicios.</p>
+                        <input type="text" id="compra__nombre" placeholder="Nombre" name="compra-nombre" class="compra__input" maxlength="25">
+                        <input type="text" id="compra__apellido" placeholder="Apellido" name="compra-apellido" class="compra__input" maxlength="25">
+                        <input type="text" id="compra__dni" placeholder="DNI" name="compra-dni" class="compra__input" minlength="6" maxlength="10">
+                        <input type="tel" id="compra__tel" placeholder="Teléfono" name="compra-tel" class="compra__input" minlength="7">
+                        <input type="email" id="compra__email" placeholder="Email" name="compra-email" class="compra__input" maxlength="45">
+                    </div>
+                    <div class="compra__slide" id="compra__cursos">
+                        <h3>Elegí tu curso</h3>
+                        <p>Seleccioná los servicios que quieras adquirir</p>
+                        <div class="compra__cursos-contenedor">
+                            <label for="compra__cursoBasico">Manejo Básico <input type="checkbox" id="compra__cursoBasico" value="basico"></label>
+                            <p class="compra__precio">$8500.-</p>
+                            <label for="compra__cursoAvanzado">Manejo Avanzado <input type="checkbox" id="compra__cursoAvanzado" value="avanzado"></label>
+                            <p class="compra__precio">$6000.-</p>
+                            <label for="compra__cursoMecanica">Mecánica Básica <input type="checkbox" id="compra__cursoMecanica" value="mecanica"></label>
+                            <p class="compra__precio">$5500.-</p>
+                            <label for="compra__cursoGestor">Gestor de Trámites <input type="checkbox" id="compra__cursoGestor" value="gestor"></label>
+                            <p class="compra__precio">$3000.-</p>
+                        </div>
+                    </div>
+                    <div class="compra__slide" id="compra__fechas">
+                        <h3>Fecha y horario</h3>
+                    </div>
+                    <div class="compra__slide" id="compra__resumen">
+                        <h3>Resumen de compra</h3>
+                    </div>
+                </form>
+            </div>
             <button id="comprar-cerrar"><i class="far fa-times-circle"></i></button>
             <button class="compra__boton" id="boton__volver">Volver</button>
             <button class="compra__boton" id="boton__siguiente">Siguiente</button>

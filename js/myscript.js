@@ -156,19 +156,68 @@ modalComprar.addEventListener('click', ()=> {
     modalComprar.firstElementChild.classList.remove("contenedor__compra-active");
 })
 
+
+// formulario slider
+
 let slideIndex = 0;
 
+const dots = document.getElementsByClassName('dot');
 const autito = document.getElementById("autito");
+const line = document.getElementById("line");
 
+
+const formularioSlider = document.getElementById('formulario__compra');
+const compraSlide = document.getElementsByClassName('compra__slide');
+
+
+// botones
 const botonSiguiente = document.getElementById('boton__siguiente');
 const botonVolver = document.getElementById('boton__volver');
 
 botonSiguiente.addEventListener('click', ()=> {
-    slideIndex += 1;
-    autito.style.order = slideIndex;
+    let size = compraSlide[0].clientWidth;
+    if (slideIndex < 3) {
+        slideIndex++;
+        formularioSlider.style.transform = 'translateX(' + (-size * slideIndex) +'px)';
+
+        autitoAvanzar();
+        dotCheck()
+    }
 })
 botonVolver.addEventListener('click', ()=> {
-    slideIndex -=1;
-    autito.style.order = slideIndex;
+    let size = compraSlide[0].clientWidth;
+    if (slideIndex === 0) {
+        comprarCerrar.click();
+    }
+    if (slideIndex > 0) {
+        slideIndex--;
+        formularioSlider.style.transform = 'translateX(' + (-size * slideIndex) +'px)';
+
+        autitoVolver();
+        dotCheck()
+    }
 })
+
+
+
+function autitoAvanzar() {
+    let distanciaDots = (Math.floor(dots[1].getBoundingClientRect().left)) - (Math.floor(dots[0].getBoundingClientRect().left))
+        autito.style.transform = 'translateX(' + (distanciaDots * slideIndex) + 'px)';
+        line.style.width = (distanciaDots * slideIndex) + 'px';
+
+}
+function autitoVolver() {
+    let distanciaDots = (Math.floor(dots[1].getBoundingClientRect().left)) - (Math.floor(dots[0].getBoundingClientRect().left))
+        autito.style.transform = 'translateX(' + (distanciaDots * slideIndex) + 'px)';
+        line.style.width = (distanciaDots * slideIndex) + 'px';
+}
+function dotCheck() {
+    for (let i = 0; i < dots.length; i++) {
+        if (i < slideIndex) {
+            dots[i].classList.add("dot-check")
+        } else {
+            dots[i].classList.remove("dot-check")
+        }
+    }
+}
 
