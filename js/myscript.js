@@ -1,3 +1,40 @@
+var servicios;
+const cursosLista = document.getElementById('cursos__lista');
+const cursosEnForm = document.getElementById('compra__cursos-contenedor');
+
+fetch('/data/servicios.json').then((res) => {
+    res.json().then((data)=>{
+
+        servicios = data;
+        
+        // cursos index y botones
+        servicios.forEach((curso)=> {
+            cursosLista.innerHTML += `
+            <li class="cursos__item">
+            <h3 class="cursos__header">${curso.nombre}</h3>
+            <div class="cursos__info">
+            <p>${curso.desc}</p>
+            <p class="cursos__precio">$${curso.precio}.-</p>
+            </div>
+            </li>
+            `;
+
+        // cursos en formulario compra
+            cursosEnForm.innerHTML += `
+            <label for="${curso.id}">${curso.nombre}<input type="checkbox" id="${curso.id}"></label>
+            <p class="compra__precio">$${curso.precio}.-</p>`;
+        })
+        var cursoAccBoton = document.getElementsByClassName("cursos__header");
+      
+        for (let boton of cursoAccBoton) {
+            boton.addEventListener('click', ()=> {
+                boton.parentElement.classList.toggle("cursos__item-active")
+            })
+        }
+    })
+    
+})
+
 
 // Objeto de carrito de compras - array de objetos-compra
 class CarritoDeCompras {
@@ -33,7 +70,6 @@ class Compra {
 var nuevoCarritoDeCompras = new CarritoDeCompras();
 nuevoCarritoDeCompras.tomarDatosIniciales();
 
-
 // ============
 // Navegacion - Menu mobile
 // ============
@@ -52,25 +88,6 @@ botonMobileCerrar.click( () => {
 headerLinks.click( ()=> {
     headerNavegacion.removeClass("header__nav-active")
 })
-
-// ============
-// Boton Cursos
-// ============
-
-
-var cursoAccBoton = document.getElementsByClassName("cursos__header");
-var cursoInfo = document.getElementsByClassName("cursos__info");
-var cursoItem = document.getElementsByClassName("cursos__item");
-
-for (let i = 0; i < cursoAccBoton.length; i++) {
-    cursoAccBoton[i].addEventListener("click", function () {
-        cursoAccBoton[i].classList.toggle("cursos__header-active");
-        cursoInfo[i].classList.toggle("cursos__info-active");
-        cursoItem[i].classList.toggle("cursos__item-active");
-    })
-}
-
-
 
 //=============
 // Validar form contacto
@@ -142,18 +159,15 @@ const contenedorComprar = document.getElementById('contenedor__compra')
 
 comprarAbrir.addEventListener('click', ()=> {
     modalComprar.classList.add("comprar-active");
-    modalComprar.firstElementChild.classList.add("contenedor__compra-active");
 })
 comprarCerrar.addEventListener('click', ()=> {
     modalComprar.classList.remove("comprar-active");
-    modalComprar.firstElementChild.classList.remove("contenedor__compra-active");
 })
 contenedorComprar.addEventListener('click', (e) => {
     e.stopPropagation();
 })
 modalComprar.addEventListener('click', ()=> {
     modalComprar.classList.remove("comprar-active");
-    modalComprar.firstElementChild.classList.remove("contenedor__compra-active");
 })
 
 

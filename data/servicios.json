@@ -1,0 +1,32 @@
+[
+{
+    "id": "manejo1",
+    "nombre": "Manejo básico",
+    "precio": 8500,
+    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+},
+{   
+    "id": "manejo2",
+    "nombre": "Manejo avanzado",
+    "precio":6000,
+    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+},
+{
+    "id": "mecanica",
+    "nombre": "Mecánica básica",
+    "precio": 5500,
+    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+},
+{
+    "id": "teorico",
+    "nombre": "Exámen teórico",
+    "precio": 2000,
+    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+},
+{
+    "id": "gestor",
+    "nombre": "Gestor de trámites",
+    "precio": 3000,
+    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+}
+]

@@ -294,12 +294,12 @@ li {
                     font-size: 2rem;
                 }
             }
-            .cursos__header-active {
-                color: $naranja;
-                &:after {
-                    content: "\f102";
-                }
-            }
+            // .cursos__header-active {
+            //     color: $naranja;
+            //     &:after {
+            //         content: "\f102";
+            //     }
+            // }
             .cursos__info {
                 margin: 0 2rem 0rem 2rem;
                 max-height: 0;
@@ -308,17 +308,29 @@ li {
                 transition: all .3s;            
            }
            
-           .cursos__info-active {
-                opacity: 1;  
-                padding: 1rem 0;
-                max-height: 500px;
-                border-top: 1px $naranja solid;
+        //    .cursos__info-active {
+        //         opacity: 1;  
+        //         padding: 1rem 0;
+        //         max-height: 500px;
+        //         border-top: 1px $naranja solid;
                 
-           }
+        //    }
         }
         .cursos__item-active {
             margin-bottom: 1rem;
             box-shadow: 0px 3px 6px 0 rgba(0, 0, 0, 0.2);
+            .cursos__info {
+                opacity: 1;  
+                padding: 1rem 0;
+                max-height: 500px;
+                border-top: 1px $naranja solid;                
+           }
+           .cursos__header {
+            color: $naranja;
+            &:after {
+                content: "\f102";
+            }
+            }
         }
     }
 }
@@ -426,15 +438,11 @@ li {
             }
         }
         #comprar-cerrar {
-            left: -40px;
-            top: -20px;
+            right: 15px;
+            top: 15px;
             font-size: 3rem;
             font-weight: bold;
-            color: #fff;
-            @media (max-width: 576px) {
-                left: 10px;
-                top: -40px;
-            }
+            color:  rgb(190, 190, 190);
         }
         .compra__boton {
             padding: 1rem 1.6rem;
@@ -554,10 +562,10 @@ li {
             .formulario__compra {
                 display: flex;
                 padding-bottom: 4rem;
-                width: 700px;
+                max-width: 700px;
                 transition: transform .5s ease-in-out;
                 @media (max-width: 768px) {
-                    width: 500px;
+                    max-width: 500px;
                 }
                 .compra__slide {
                     flex: 0 0 100%;
@@ -599,19 +607,19 @@ li {
                         justify-content: space-between;
                         margin-top: 2rem;
                         flex-wrap: wrap;
-
+                        width: 100%;
                         label {
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
                             font-size: 2rem;
                             font-weight: 700;
-                            flex: 0 0 60%;
+                            flex: 0 0 65%;
                         }
                         .compra__precio {
                             font-size: 2rem;
                             font-weight: 700;
-                            flex: 0 0 40%;
+                            flex: 0 0 30%;
                             text-align: center;
                         }
                     }
@@ -619,14 +627,18 @@ li {
             }
         }
     }
-    .contenedor__compra-active {
-        margin-top: 0;
-        transition: all ease-in-out .5s .2s;
-    }
+    // .contenedor__compra-active {
+    //     margin-top: 0;
+    //     transition: all ease-in-out .5s .2s;
+    // }
 }
 .comprar-active {
     visibility: visible;
     opacity: 1;
+    .contenedor__compra {
+        margin-top: 0;
+        transition: all ease-in-out .5s .2s;
+    }
 }
 
 // ======
