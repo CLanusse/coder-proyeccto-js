@@ -17,9 +17,6 @@ $blanco: #ffffff;
 $naranja: #fe401e;
 $naranjaOscuro: #af230a;
 
-// breakpoint
-$bpTablet: 768px;
-
 // ========
 // GLOBALES
 // ========
@@ -294,12 +291,6 @@ li {
                     font-size: 2rem;
                 }
             }
-            // .cursos__header-active {
-            //     color: $naranja;
-            //     &:after {
-            //         content: "\f102";
-            //     }
-            // }
             .cursos__info {
                 margin: 0 2rem 0rem 2rem;
                 max-height: 0;
@@ -307,14 +298,6 @@ li {
                 opacity: 0;
                 transition: all .3s;            
            }
-           
-        //    .cursos__info-active {
-        //         opacity: 1;  
-        //         padding: 1rem 0;
-        //         max-height: 500px;
-        //         border-top: 1px $naranja solid;
-                
-        //    }
         }
         .cursos__item-active {
             margin-bottom: 1rem;
@@ -520,8 +503,6 @@ li {
                         opacity: 0;
                         transition: opacity .3s .3s;
                     }
-
-                    
                 }
                 
                 .dot-check {
@@ -555,13 +536,12 @@ li {
         
         // slider formulario
         .compra__carousel {
-            height: 500px;
+            min-height: 450px;
             width: 100%;
-            // margin: auto;
             overflow: hidden;
             .formulario__compra {
                 display: flex;
-                padding-bottom: 4rem;
+                padding-bottom: 5rem;
                 max-width: 700px;
                 transition: transform .5s ease-in-out;
                 @media (max-width: 768px) {
@@ -587,10 +567,13 @@ li {
                     
                 }
                 #compra__datosPersonales {
+                    p {
+                        margin-bottom: 1rem;
+                    }
                     .compra__input {
                         display: block;
                         border: none;
-                        margin-top: 2.4rem;
+                        // margin-bottom: 2.4rem;
                         padding: 1rem;
                         border-radius: 4px;
                         width: 100%;
@@ -599,6 +582,22 @@ li {
                             outline: none;
                             border-bottom: 3px solid $naranja;
                         }
+                    }
+                    input[type=number]::-webkit-inner-spin-button, 
+                    input[type=number]::-webkit-outer-spin-button { 
+                    -webkit-appearance: none; 
+                    margin: 0; 
+                    }
+                    small {
+                        color: #e74c3c;
+                        margin-left: 1rem;
+                    }
+                    .input-success {
+                        border: 3px solid #2ecc71;
+                    }
+                    .input-error {
+                        border: 3px solid #e74c3c;
+                        // margin-bottom: .5rem;
                     }
                 }
                 #compra__cursos {
@@ -624,13 +623,81 @@ li {
                         }
                     }
                 }
+                #compra__horarios {
+                    #horarios__manejo {
+                        margin-top: 2rem;
+                        p {
+                            font-weight: 700;
+                        }
+                        .contenedor__horarios-manejo {
+                            display: flex;
+                            div {
+                                padding: .5rem 0;
+                                flex-basis: 30%;
+                            }
+                        }
+                    }
+
+                    #horarios__teorico {
+                        margin-top: 2rem;
+                        p {
+                            font-weight: 700;
+                        }
+                        .contenedor__horarios-teorico {
+                            display: flex;
+                            flex-wrap: wrap;
+                            div {
+                                flex-basis: 30%;
+                                padding: .5rem 0;
+                            }
+                        }
+                    }
+                    .horarios-disabled {
+                        opacity: 0.5;
+                        input, label {
+                            pointer-events: none;
+                        }
+                        &:hover {
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+                #compra__entrevista {
+                    .contenedor__entrevista {
+                        display: flex;
+                        justify-content: space-between;
+                        @media (max-width: 768px) {
+                            display: block;
+                        }
+                        p {
+                            flex-basis: 50%;
+                        }
+                        .calendly__btn {
+                            align-self: center;
+                            margin: 0 auto;
+                            padding: .8rem 1.6rem;
+                            font-weight: 700;
+                            color: $blanco;
+                            background-color:  $naranja;
+                            font-size: 2rem;
+                            &:hover {
+                                background-color: $naranjaOscuro;
+                            }
+                            &:after {
+                                font-family: "Font Awesome 5 Free";
+                                font-weight: 900;
+                                content: "\f073";
+                                padding-left: .6rem;
+                            }
+                            @media (max-width: 768px) {
+                                margin: 3rem auto;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-    // .contenedor__compra-active {
-    //     margin-top: 0;
-    //     transition: all ease-in-out .5s .2s;
-    // }
 }
 .comprar-active {
     visibility: visible;

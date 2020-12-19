@@ -515,13 +515,13 @@ li {
   transition: transform 0.5s ease-in-out;
 }
 .comprar .contenedor__compra .compra__carousel {
-  height: 500px;
+  min-height: 450px;
   width: 100%;
   overflow: hidden;
 }
 .comprar .contenedor__compra .compra__carousel .formulario__compra {
   display: flex;
-  padding-bottom: 4rem;
+  padding-bottom: 5rem;
   max-width: 700px;
   transition: transform 0.5s ease-in-out;
 }
@@ -548,10 +548,12 @@ li {
   background-color: #fe401e;
   border-bottom-right-radius: 5px;
 }
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__datosPersonales p {
+  margin-bottom: 1rem;
+}
 .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__datosPersonales .compra__input {
   display: block;
   border: none;
-  margin-top: 2.4rem;
   padding: 1rem;
   border-radius: 4px;
   width: 100%;
@@ -560,6 +562,21 @@ li {
   border: none;
   outline: none;
   border-bottom: 3px solid #fe401e;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__datosPersonales input[type=number]::-webkit-inner-spin-button,
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__datosPersonales input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__datosPersonales small {
+  color: #e74c3c;
+  margin-left: 1rem;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__datosPersonales .input-success {
+  border: 3px solid #2ecc71;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__datosPersonales .input-error {
+  border: 3px solid #e74c3c;
 }
 .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__cursos .compra__cursos-contenedor {
   display: flex;
@@ -581,6 +598,77 @@ li {
   font-weight: 700;
   flex: 0 0 30%;
   text-align: center;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__manejo {
+  margin-top: 2rem;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__manejo p {
+  font-weight: 700;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__manejo .contenedor__horarios-manejo {
+  display: flex;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__manejo .contenedor__horarios-manejo div {
+  padding: 0.5rem 0;
+  flex-basis: 30%;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__teorico {
+  margin-top: 2rem;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__teorico p {
+  font-weight: 700;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__teorico .contenedor__horarios-teorico {
+  display: flex;
+  flex-wrap: wrap;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__teorico .contenedor__horarios-teorico div {
+  flex-basis: 30%;
+  padding: 0.5rem 0;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios .horarios-disabled {
+  opacity: 0.5;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios .horarios-disabled input, .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios .horarios-disabled label {
+  pointer-events: none;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios .horarios-disabled:hover {
+  cursor: not-allowed;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista {
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista {
+    display: block;
+  }
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista p {
+  flex-basis: 50%;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista .calendly__btn {
+  align-self: center;
+  margin: 0 auto;
+  padding: 0.8rem 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #fe401e;
+  font-size: 2rem;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista .calendly__btn:hover {
+  background-color: #af230a;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista .calendly__btn:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "";
+  padding-left: 0.6rem;
+}
+@media (max-width: 768px) {
+  .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista .calendly__btn {
+    margin: 3rem auto;
+  }
 }
 
 .comprar-active {

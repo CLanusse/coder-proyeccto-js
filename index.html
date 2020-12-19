@@ -7,7 +7,6 @@
     <script src="https://kit.fontawesome.com/df59baf6b8.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <!-- <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
     <script src="/js/jquery.js"></script>
     <script defer src="/js/myscript.js"></script>
 </head>
@@ -53,9 +52,6 @@
         </ul>
     </main>
 
-    <section class="testimonial">
-    </section>
-
     <section id="contacto" class="contacto">
         <div class="contenedor">
             <div class="contacto__info">
@@ -87,21 +83,27 @@
                     <span class="dot"><i class="fas fa-check"></i></span>
                     <span class="dot"><i class="fas fa-check"></i></span>
                     <span class="dot"><i class="fas fa-check"></i></span>
+                    <span class="dot"><i class="fas fa-check"></i></span>
                     <span class="line" id="line"></span>
                     <i id="autito" class="fas fa-car-side autito"></i>
                 </div>
             </div>
             <div class="compra__carousel">
                 <form id="formulario__compra" class="formulario__compra">
+
                     <div class="compra__slide" id="compra__datosPersonales">
                         <h3>Datos Personales</h3>
                         <p>Ingresá tus datos para adquirir nuestros servicios.</p>
-                        <input type="text" id="compra__nombre" placeholder="Nombre" name="compra-nombre" class="compra__input" maxlength="25">
-                        <input type="text" id="compra__apellido" placeholder="Apellido" name="compra-apellido" class="compra__input" maxlength="25">
-                        <input type="text" id="compra__dni" placeholder="DNI" name="compra-dni" class="compra__input" minlength="6" maxlength="10">
+                        <input type="text" id="compra__nombre" placeholder="Nombre y apellido" name="compra-nombre" class="compra__input" maxlength="25">
+                        <small></small>
+                        <input type="number" id="compra__dni" placeholder="DNI" name="compra-dni" class="compra__input" minlength="6" maxlength="10">
+                        <small></small>
                         <input type="tel" id="compra__tel" placeholder="Teléfono" name="compra-tel" class="compra__input" minlength="7">
+                        <small></small>
                         <input type="email" id="compra__email" placeholder="Email" name="compra-email" class="compra__input" maxlength="45">
+                        <small></small>
                     </div>
+
                     <div class="compra__slide" id="compra__cursos">
                         <h3>Elegí tu curso</h3>
                         <p>Seleccioná los servicios que quieras adquirir</p>
@@ -109,11 +111,71 @@
                            <!-- cursos desde js -->
                         </div>
                     </div>
-                    <div class="compra__slide" id="compra__fechas">
+
+                    <div class="compra__slide" id="compra__horarios">
                         <h3>Fecha y horario</h3>
+                        <p>En Salerno Autoescuela trabajamos de Lunes a Sábados en múltiples horarios</p>
+                        <div id="horarios__manejo">
+                            <p>Elegí en qué horario estás disponible para tu curso de manejo</p>
+                            <div class="contenedor__horarios-manejo">
+                                <div>
+                                    <input type="radio" name="horarios-manejo" id="horarios__manejo1" value="mañana">
+                                    <label for="horarios__manejo1">09:00 - 12:00 hs</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="horarios-manejo" id="horarios__manejo2" value="tarde">
+                                    <label for="horarios__manejo2">13:00 - 17:00 hs</label></div>
+                                <div>
+                                    <input type="radio" name="horarios-manejo" id="horarios__manejo3" value="noche">
+                                    <label for="horarios__manejo3">17:00 - 20:00 hs</label>
+                                </div>      
+                            </div>
+                        </div>
+                        <div id="horarios__teorico">
+                            <p>¿Qué horario preferís para tu curso teórico?</p>
+                            <div class="contenedor__horarios-teorico">
+                                <div>
+                                    <input type="radio" name="horarios-teorico" id="horarios__teorico1" value="9-11">
+                                    <label for="horarios__teorico1">09:00 - 11:00 hs</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="horarios-teorico" id="horarios__teorico2" value="11-13">
+                                    <label for="horarios__teorico2">11:00 - 13:00 hs</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="horarios-teorico" id="horarios__teorico3" value="17-19">
+                                    <label for="horarios__teorico3">17:00 - 19:00 hs</label></div>
+                                <div>
+                                    <input type="radio" name="horarios-teorico" id="horarios__teorico4" value="19-21">
+                                    <label for="horarios__teorico4">19:00 - 21:00 hs</label>
+                                </div>      
+                                <div>
+                                    <input type="radio" name="horarios-teorico" id="horarios__teorico5" value="21-23">
+                                    <label for="horarios__teorico5">21:00 - 23:00 hs</label>
+                                </div>      
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="compra__slide" id="compra__entrevista">
+                        <h3>Agendá una entrevista</h3>
+                        <div class="contenedor__entrevista">
+                            <p>Clickeá el botón para agendar una entrevista con un coordinador de nuestro Equipo. En la llamada se ultimarán detalles sobre la fecha y horario de inicio de tus cursos y cómo abonar el servicio.</p>
+                            <!-- Principio del widget de enlace de Calendly -->
+                            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+                            <a href="" class="calendly__btn" onclick="Calendly.initPopupWidget({url: 'https:/calendly.com/conrado-lanusse/entrevista-salerno-autoescuela'});return false;">Agendar llamado</a>
+                            <!-- Final del widget de enlace de Calendly -->
+                        </div>
+                    </div>
+                    
                     <div class="compra__slide" id="compra__resumen">
                         <h3>Resumen de compra</h3>
+                        <p>Verifica que la información sea correcta</p>
+                        <div class="contenedor__resumen">
+                            <div class="resumen__datos"></div>
+                            <div class="resumen__servicios"></div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -141,12 +203,6 @@
             </div>
         </div>
     </footer>
-
-
-
-
-
-
 
 </body>
 </html>

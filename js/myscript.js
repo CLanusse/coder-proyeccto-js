@@ -21,11 +21,11 @@ fetch('/data/servicios.json').then((res) => {
 
         // cursos en formulario compra
             cursosEnForm.innerHTML += `
-            <label for="${curso.id}">${curso.nombre}<input type="checkbox" id="${curso.id}"></label>
+            <label for="${curso.id}">${curso.nombre}<input type="checkbox" class="compra__servicio" id="${curso.id}"></label>
             <p class="compra__precio">$${curso.precio}.-</p>`;
         })
         var cursoAccBoton = document.getElementsByClassName("cursos__header");
-      
+        
         for (let boton of cursoAccBoton) {
             boton.addEventListener('click', ()=> {
                 boton.parentElement.classList.toggle("cursos__item-active")
@@ -37,47 +37,65 @@ fetch('/data/servicios.json').then((res) => {
 
 
 // Objeto de carrito de compras - array de objetos-compra
-class CarritoDeCompras {
+class ResumenDeCompra {
     constructor () {
         this.listaCompras = [];
     }
-    agregarCompra = function(compra) {
-        this.listaCompras.push(compra);
+
+    agregarDatosPersonales = () => {
+        this.listaCompras = [] //reset del carrito
+        let datosPersonales = new DatosPersonales(datosNombre.value, datosDni.value, datosTel.value, datosEmail.value);
+        this.listaCompras.push(datosPersonales);
+        //agrega array para los servicios
+        this.listaCompras.push([])
         localStorage.setItem('carrito', JSON.stringify(this.listaCompras));
+    }
+    
+    agregarServicios = (servicios) => {
+        this.listaCompras[1] = servicios;
+        localStorage.setItem('carrito', JSON.stringify(this.listaCompras));
+    }
+
+    precioFinal =  () => {
+        let precioTotal = 0;
+        for (let compra of this.listaCompras[1]) {
+            precioTotal += compra.precio;
+        }
+        return precioTotal;
     }
     tomarDatosIniciales = function() {
         if (localStorage.getItem('carrito') != null) {
             this.listaCompras = JSON.parse(localStorage.getItem('carrito'));
         }
     }
-    precioFinal = function () {
-        let precioTotal = 0;
-        for (let compra of this.listaCompras) {
-            precioTotal += compra.precio;
-        }
-        return precioTotal;
-    }
 }
 
 // Objeto de compra, se agrega al carrito
-class Compra {
+class Servicio {
     constructor (producto, precio) {
         this.producto = producto;
         this.precio = precio;
     }
 }
+class DatosPersonales {
+    constructor (nombre, dni, tel, email) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.tel = tel;
+        this.email = email;
+    }
+}
 
-var nuevoCarritoDeCompras = new CarritoDeCompras();
-nuevoCarritoDeCompras.tomarDatosIniciales();
+let resumenDeCompra = new ResumenDeCompra();
 
 // ============
 // Navegacion - Menu mobile
 // ============
 
-var botonMobileAbrir = $("#nav__mobile-abrir");
-var botonMobileCerrar = $("#nav__mobile-cerrar");
-var headerNavegacion = $(".header__nav");
-var headerLinks = $(".navegacion__link");
+let botonMobileAbrir = $("#nav__mobile-abrir");
+let botonMobileCerrar = $("#nav__mobile-cerrar");
+let headerNavegacion = $(".header__nav");
+let headerLinks = $(".navegacion__link");
 
 botonMobileAbrir.click( () => {
     headerNavegacion.addClass("header__nav-active");
@@ -179,40 +197,214 @@ const dots = document.getElementsByClassName('dot');
 const autito = document.getElementById("autito");
 const line = document.getElementById("line");
 
-
 const formularioSlider = document.getElementById('formulario__compra');
 const compraSlide = document.getElementsByClassName('compra__slide');
 
+const datosNombre = document.getElementById("compra__nombre");
+const datosDni = document.getElementById("compra__dni");
+const datosTel = document.getElementById("compra__tel");
+const datosEmail = document.getElementById("compra__email");
 
 // botones
 const botonSiguiente = document.getElementById('boton__siguiente');
 const botonVolver = document.getElementById('boton__volver');
 
-botonSiguiente.addEventListener('click', ()=> {
-    let size = compraSlide[0].clientWidth;
-    if (slideIndex < 3) {
-        slideIndex++;
-        formularioSlider.style.transform = 'translateX(' + (-size * slideIndex) +'px)';
-
-        autitoAvanzar();
-        dotCheck()
-    }
+botonSiguiente.addEventListener('click', ()=> {  
+    switch(slideIndex) {
+        case 0:
+            cargarDatosPersonales();
+            break;
+        case 1:
+            cargarServicios();
+            break;
+        case 2:
+            formSliderRight();
+            break;
+        case 3:
+            formSliderRight();
+            break;
+        case 4:
+            
+            break;
+        }
 })
+
 botonVolver.addEventListener('click', ()=> {
-    let size = compraSlide[0].clientWidth;
-    if (slideIndex === 0) {
-        comprarCerrar.click();
-    }
-    if (slideIndex > 0) {
-        slideIndex--;
-        formularioSlider.style.transform = 'translateX(' + (-size * slideIndex) +'px)';
-
-        autitoVolver();
-        dotCheck()
+    switch(slideIndex) {
+        case 0:
+            comprarCerrar.click();
+            break;
+        case 1:
+            formSliderLeft();
+            break;
+        case 2:
+            formSliderLeft();
+            break;
+        case 3:
+            formSliderLeft();
+            break;
+        case 4:
+            formSliderLeft();
+            break;
     }
 })
 
 
+
+function cargarDatosPersonales() {
+    let datosCheck = checkDatosPersonales();
+            if (datosCheck) {
+                resumenDeCompra.agregarDatosPersonales();
+                console.log(resumenDeCompra.listaCompras);
+                formSliderRight();
+            } else {
+                console.log("nope")
+            }
+}
+
+function cargarServicios() {
+    let comprarCursos = [];
+    let cursosCompra = document.getElementsByClassName('compra__servicio')
+    for (curso of cursosCompra) {
+        if (curso.checked) {
+            servicios.forEach((servicio) => {
+                if (servicio.id === curso.id) {
+                    let compra = new Servicio(servicio.nombre, servicio.precio);
+                    comprarCursos.push(compra)
+                }
+            })
+
+        }
+    }
+    if (comprarCursos.length === 0) {
+        // mostrar error
+        console.log("asdfasdf")
+    } else {
+        resumenDeCompra.agregarServicios(comprarCursos);
+        prepararPanelFechas();
+        formSliderRight();
+    }
+}
+
+function checkDatosPersonales() {
+    let datosNombreValue = datosNombre.value.trim();
+    let datosDniValue = datosDni.value.trim();
+    let datosTelValue = datosTel.value.trim();
+    let datosEmailValue = datosEmail.value.trim();
+
+    let nombreCheck = false;
+    let dniCheck = false;
+    let telCheck = false;
+    let emailCheck = false;
+
+    datosNombre.classList.remove('input-error', 'input-success');
+    datosDni.classList.remove('input-error', 'input-success');
+    datosTel.classList.remove('input-error', 'input-success');
+    datosEmail.classList.remove('input-error', 'input-success');
+
+    if (datosNombreValue === '') {
+        nombreCheck = inputError(datosNombre, 'Este campo no puede estar vacío')
+    } else if (datosNombreValue.length < 4) {
+        nombreCheck = inputError(datosNombre, 'Por favor ingrese su nombre completo')
+    } else if (!isText(datosNombreValue)) {
+        nombreCheck = inputError(datosNombre, 'El nombre ingresado no es válido')
+    } else {
+        nombreCheck = inputSuccess(datosNombre);
+    }
+
+    if (datosDniValue === '') {
+        dniCheck = inputError(datosDni, 'Este campo no puede estar vacío');
+    } else if (datosDniValue.length > 10 || datosDniValue.length < 6) {
+        dniCheck = inputError(datosDni, 'DNI no válido. Ingrese sólo números, sin puntos o espacios.')
+    } else {
+        dniCheck = inputSuccess(datosDni);
+    }
+
+    if (datosTelValue === '') {
+        telCheck = inputError(datosTel, 'Este campo no puede estar vacío')
+    } else if (datosTelValue.length < 6) {
+        telCheck = inputError(datosTel, 'El número ingresado no es válido')
+    } else if (!isTel(datosTelValue)) {
+        telCheck = inputError(datosTel, 'Ingrese sólo números, sin otros caracteres')
+    } else {
+        telCheck = inputSuccess(datosTel);
+    }
+
+    if (datosEmailValue === '') {
+       emailCheck = inputError(datosEmail, 'Este campo no puede estar vacío')
+    } else if (!isEmail(datosEmailValue)) {
+        emailCheck = inputError(datosEmail, 'Formato de email no válido. Ejemplo: salerno@autoescuela.com')
+    } else {
+        emailCheck = inputSuccess(datosEmail);
+    }
+
+    if (nombreCheck && dniCheck && telCheck && emailCheck) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function inputSuccess(input) {
+    let small = input.nextElementSibling;
+    input.classList.add('input-success');
+    small.innerText = '';
+    return true;
+}
+function inputError(input, mensaje) {
+    let small = input.nextElementSibling;
+    input.classList.add('input-error');
+    small.innerText = mensaje;
+    return false;
+}
+
+function isText(text) {
+    return /^[a-zA-Z]+(?:[\s.]+[a-zA-Z]+)*$/.test(text);
+}
+function isEmail(email) {
+    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
+}
+function isTel(number) {
+    for (caracter of number) {
+        if (isNaN(caracter)) {
+            return false
+        }
+    }
+    return true;
+}
+
+function prepararPanelFechas() {
+    const fechasManejo = document.getElementById('horarios__manejo');
+    const fechasTeorico = document.getElementById('horarios__teorico');
+
+    fechasManejo.classList.add('horarios-disabled');
+    fechasTeorico.classList.add('horarios-disabled');
+    
+    resumenDeCompra.listaCompras[1].forEach((compra) => {
+        if (compra.producto == 'Manejo básico' || compra.producto == 'Manejo avanzado') {
+            fechasManejo.classList.remove('horarios-disabled')
+        } else if (compra.producto == 'Mecánica básica' || compra.producto == 'Exámen teórico' || compra.producto == 'Gestor de trámites') {
+            fechasTeorico.classList.remove('horarios-disabled')
+        }
+    })
+}
+
+function formSliderRight() {
+    let size = compraSlide[0].clientWidth;
+    slideIndex++;
+    formularioSlider.style.transform = 'translateX(' + (-size * slideIndex) +'px)';
+
+    autitoAvanzar();
+    dotCheck()
+}
+function formSliderLeft() {
+    let size = compraSlide[0].clientWidth;
+    slideIndex--;
+    formularioSlider.style.transform = 'translateX(' + (-size * slideIndex) +'px)';
+
+    autitoVolver();
+    dotCheck()
+}
 
 function autitoAvanzar() {
     let distanciaDots = (Math.floor(dots[1].getBoundingClientRect().left)) - (Math.floor(dots[0].getBoundingClientRect().left))
