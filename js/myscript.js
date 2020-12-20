@@ -14,29 +14,41 @@ fetch('/data/servicios.json').then((res) => {
             <h3 class="cursos__header">${curso.nombre}</h3>
             <div class="cursos__info">
             <p>${curso.desc}</p>
-            <p class="cursos__precio">$${curso.precio}.-</p>
+            <p class="cursos__precio">Precio: $${curso.precio}.-</p>
             </div>
             </li>
             `;
+
+        let cursoAccBoton = document.getElementsByClassName("cursos__header");
+        for (let boton of cursoAccBoton) {
+            boton.addEventListener('click', ()=> {
+                boton.parentElement.classList.toggle("cursos__item-active")
+            })
+        }
 
         // cursos en formulario compra
             cursosEnForm.innerHTML += `
             <label for="${curso.id}">${curso.nombre}<input type="checkbox" class="compra__servicio" id="${curso.id}"></label>
             <p class="compra__precio">$${curso.precio}.-</p>`;
         })
-        var cursoAccBoton = document.getElementsByClassName("cursos__header");
         
-        for (let boton of cursoAccBoton) {
-            boton.addEventListener('click', ()=> {
-                boton.parentElement.classList.toggle("cursos__item-active")
+        let formServicios = document.getElementsByClassName('compra__servicio')
+        let formPrecios = document.getElementsByClassName('compra__precio');
+        for (let i = 0; i < formServicios.length; i++) {
+            formServicios[i].addEventListener('change', () => {
+                if (formServicios[i].checked) {
+                    formPrecios[i].style.opacity = '1';
+                } else {
+                    formPrecios[i].style.opacity = '.3'
+                }
             })
-        }
-    })
-    
+        }   
+        
+        resumenDeCompra.tomarDatosIniciales();
+    })  
 })
 
-
-// Objeto de carrito de compras - array de objetos-compra
+// Objeto de carrito de compras - array datos personales más servicios adquiridos
 class ResumenDeCompra {
     constructor () {
         this.listaCompras = [];
@@ -46,35 +58,53 @@ class ResumenDeCompra {
         this.listaCompras = [] //reset del carrito
         let datosPersonales = new DatosPersonales(datosNombre.value, datosDni.value, datosTel.value, datosEmail.value);
         this.listaCompras.push(datosPersonales);
-        //agrega array para los servicios
-        this.listaCompras.push([])
         localStorage.setItem('carrito', JSON.stringify(this.listaCompras));
     }
     
     agregarServicios = (servicios) => {
+        //agrega array para los servicios y evita duplicacion
+        if (this.listaCompras.length > 1) {
+            this.listaCompras = this.listaCompras.slice(0, 1)
+        }
+        this.listaCompras.push([])
         this.listaCompras[1] = servicios;
         localStorage.setItem('carrito', JSON.stringify(this.listaCompras));
     }
-
-    precioFinal =  () => {
+    
+    agregarHorarios = (horarios) => {
+        //agrega array para horarios y evita duplicacion
+        if (this.listaCompras.length > 2) {
+            this.listaCompras = this.listaCompras.slice(0, 2)
+        }
+        this.listaCompras.push([]);
+        this.listaCompras[2] = horarios;
+        localStorage.setItem('carrito', JSON.stringify(this.listaCompras));
+    }
+    precioFinal = () => {
         let precioTotal = 0;
         for (let compra of this.listaCompras[1]) {
             precioTotal += compra.precio;
         }
         return precioTotal;
     }
-    tomarDatosIniciales = function() {
+    tomarDatosIniciales = () => {
         if (localStorage.getItem('carrito') != null) {
             this.listaCompras = JSON.parse(localStorage.getItem('carrito'));
+            continuarCompraPendiente();
         }
     }
 }
-
-// Objeto de compra, se agrega al carrito
+class Horario {
+    constructor (curso, horario) {
+        this.curso = curso;
+        this.horario = horario;
+    }
+}
 class Servicio {
-    constructor (producto, precio) {
+    constructor (producto, precio, id) {
         this.producto = producto;
         this.precio = precio;
+        this.id = id;
     }
 }
 class DatosPersonales {
@@ -111,60 +141,22 @@ headerLinks.click( ()=> {
 // Validar form contacto
 //=============
 
+const contactoForm = document.getElementById("formulario-contacto");
 const contactoNombre = document.getElementById("contacto-nombre");
 const contactoEmail = document.getElementById("contacto-email");
 const contactoTelefono = document.getElementById("contacto-telefono");
 const contactoMensaje = document.getElementById("contacto-mensaje");
+const contactoEnviar = document.getElementById("formulario__enviar");
+const modalGracias = document.getElementById("modal__gracias")
 
-
-contactoNombre.addEventListener("change", () => {
-    let numberCheck;
-    let label = document.getElementById("label-nombre");
-    for (caracter of contactoNombre.value) {
-        if (!isNaN(caracter)) {
-            numberCheck = true;
-        } else {
-            numberCheck = false;
-        }
-    }
-    if ((contactoNombre.value.length < 3) | (contactoNombre.value.length > 30) | numberCheck === true) {    
-        label.innerHTML = "*Por favor, ingresa un nombre válido (Ejemplo: Juan Perez)";
-    } else {
-        label.innerHTML = "";
+contactoEnviar.addEventListener('click', (e)=> {
+    e.preventDefault();
+    let contactoCheck = checkDatosContacto();
+    if (contactoCheck) {
+        mostrarModalGracias();
     }
 })
 
-contactoEmail.addEventListener("change", () => {
-    let label = document.getElementById("label-email");
-    if (contactoEmail.value.indexOf("@") == -1 | contactoEmail.value.indexOf(".") == -1 | contactoEmail.value.indexOf(" ") != -1) {
-        label.innerHTML = "* Formato de email no válido (Ejemplo: nombre@email.com)";
-    } else {
-        label.innerHTML = "";
-    }
-})
-
-contactoTelefono.addEventListener("change", () => {
-    let label = document.getElementById("label-telefono");
-    if (contactoTelefono.value.length < 7 | contactoTelefono.value.length > 16) {
-        label.innerHTML = "* Número telefónico no válido";
-    } else {
-        label.innerHTML = "";
-    }
-    for (caracter of contactoTelefono.value) {
-        if (isNaN(caracter) == true) {
-            label.innerHTML = "* Ingresa sólo números válidos, sin otros caracteres (Ej: 02914445555)"
-        }
-    }
-})
-
-contactoMensaje.addEventListener("change", () => {
-    let label = document.getElementById("label-mensaje");
-    if (contactoMensaje.value.length < 5) {
-        label.innerHTML = "* Por favor, déjanos una consulta :)"
-    } else {
-        label.innerHTML = "";
-    }
-})
 
 // =================
 // FROMULARIO COMPRA
@@ -174,6 +166,7 @@ const comprarAbrir = document.getElementById('comprar-abrir');
 const comprarCerrar = document.getElementById('comprar-cerrar');
 const modalComprar = document.getElementById('comprar');
 const contenedorComprar = document.getElementById('contenedor__compra')
+const modalSuccess = document.getElementById('compra__modal-success');
 
 comprarAbrir.addEventListener('click', ()=> {
     modalComprar.classList.add("comprar-active");
@@ -186,6 +179,9 @@ contenedorComprar.addEventListener('click', (e) => {
 })
 modalComprar.addEventListener('click', ()=> {
     modalComprar.classList.remove("comprar-active");
+})
+modalSuccess.addEventListener('click', (e)=> {
+    e.stopPropagation();
 })
 
 
@@ -205,10 +201,17 @@ const datosDni = document.getElementById("compra__dni");
 const datosTel = document.getElementById("compra__tel");
 const datosEmail = document.getElementById("compra__email");
 
+const horariosInputs = document.getElementsByClassName('horarios__input');
+
+const resumenDatos = document.getElementById('resumen__datos');
+const resumenServicios = document.getElementById('resumen__servicios');
+const resumenPrecio = document.getElementById('resumen__precio');
 // botones
 const botonSiguiente = document.getElementById('boton__siguiente');
 const botonVolver = document.getElementById('boton__volver');
+const botonSuccess = document.getElementById('compra__boton-success');
 
+// Eventos del form
 botonSiguiente.addEventListener('click', ()=> {  
     switch(slideIndex) {
         case 0:
@@ -218,13 +221,13 @@ botonSiguiente.addEventListener('click', ()=> {
             cargarServicios();
             break;
         case 2:
-            formSliderRight();
+            cargarHorarios();
             break;
         case 3:
-            formSliderRight();
+            cargarEntrevista();
             break;
         case 4:
-            
+            mostrarModalConfirmar();
             break;
         }
 })
@@ -239,26 +242,57 @@ botonVolver.addEventListener('click', ()=> {
             break;
         case 2:
             formSliderLeft();
+            for (input of horariosInputs) {
+                input.checked = false;
+            }  
             break;
         case 3:
             formSliderLeft();
             break;
         case 4:
             formSliderLeft();
+            recuperarBotonSiguiente();
+            resumenServicios.innerHTML = '';
             break;
     }
 })
 
+botonSuccess.addEventListener('click', ()=> {
+    confirmarCompra();
+})
+
+formularioSlider.addEventListener('transitionend', ()=>{
+    if (slideIndex === 4) {
+        generarBotonConfirmar();
+    }
+})
+// Calendly API
+
+let calendlyAgendado = false;
+window.addEventListener('message', function(e) {
+      if (isCalendlyEvent(e)) {
+        if (e.data.event === 'calendly.event_scheduled') {
+            calendlyAgendado = true;
+            calendlyConfirmado();
+        }
+      }
+    }
+)
+function isCalendlyEvent(e) {
+    return e.data.event &&
+           e.data.event.indexOf('calendly') === 0;
+}
 
 
+
+// =========
+// FUNCIONES
+// =========
 function cargarDatosPersonales() {
     let datosCheck = checkDatosPersonales();
             if (datosCheck) {
                 resumenDeCompra.agregarDatosPersonales();
-                console.log(resumenDeCompra.listaCompras);
-                formSliderRight();
-            } else {
-                console.log("nope")
+                setTimeout(formSliderRight, 400);
             }
 }
 
@@ -269,20 +303,91 @@ function cargarServicios() {
         if (curso.checked) {
             servicios.forEach((servicio) => {
                 if (servicio.id === curso.id) {
-                    let compra = new Servicio(servicio.nombre, servicio.precio);
+                    let compra = new Servicio(servicio.nombre, servicio.precio, servicio.id);
                     comprarCursos.push(compra)
                 }
             })
-
         }
     }
+
+    let small = document.getElementById('compra__cursos-error');
     if (comprarCursos.length === 0) {
         // mostrar error
-        console.log("asdfasdf")
+        small.innerText = 'Elige al menos una opción';
     } else {
+        small.innerText = '';
         resumenDeCompra.agregarServicios(comprarCursos);
         prepararPanelFechas();
-        formSliderRight();
+        setTimeout(formSliderRight, 300);   
+    }
+}
+
+function cargarHorarios() {
+    let horariosCursos = [];
+    for (input of horariosInputs) {
+        if (input.checked) {
+            let horario = new Horario(input.name, input.value)
+            horariosCursos.push(horario)
+        }
+    }    
+    let minLength = calcularLengthHorarios();
+    
+    let small = document.getElementById('compra__horarios-error');
+    if (horariosCursos.length === 0) {
+        // mostrar error
+        small.innerText = 'Elige al menos una opción';
+    } else if (horariosCursos.length < minLength) {
+        small.innerText = 'Te falta elegir una opción';
+    } else {
+        small.innerText = '';
+        resumenDeCompra.agregarHorarios(horariosCursos);
+        setTimeout(formSliderRight, 300);
+    }
+}
+
+function cargarEntrevista() {
+    let small = document.getElementById('entrevista-error');
+    if (calendlyAgendado === true) {
+        small.innerText = '';
+        crearResumenCompra();
+        setTimeout(formSliderRight, 200);
+    } else {
+        small.innerText = '*Debes agendar tu entrevista'
+    }
+}
+
+function mostrarModalConfirmar() {
+    autitoFade();
+    setTimeout(()=> {
+        modalComprar.classList.add('comprar-success')
+    }, 800)
+    modalComprar.addEventListener('click', ()=> {
+        modalComprar.classList.add("comprar-active");
+    })
+}
+
+function calendlyConfirmado() {
+    let calendlyButton = document.getElementsByClassName('calendly__btn');
+    calendlyButton[0].innerText = '¡Confirmado!';
+    calendlyButton[0].classList.add('calendly__btn-success')
+}
+
+function calcularLengthHorarios() {
+    let manejo = false;
+    let teorico = false;
+
+    resumenDeCompra.listaCompras[1].forEach((compra) => {
+        if (compra.producto === 'Manejo básico' || compra.producto === 'Manejo avanzado') {
+            manejo = true;
+        } else {
+            teorico = true;
+        }
+    })
+
+    if (manejo && teorico) {
+        return 2
+    } else {
+        return 1
     }
 }
 
@@ -351,6 +456,7 @@ function inputSuccess(input) {
     small.innerText = '';
     return true;
 }
+
 function inputError(input, mensaje) {
     let small = input.nextElementSibling;
     input.classList.add('input-error');
@@ -373,6 +479,28 @@ function isTel(number) {
     return true;
 }
 
+function crearResumenCompra() {
+    let codeDatos = `
+        <p>${resumenDeCompra.listaCompras[0].nombre}</p>
+        <p>DNI ${resumenDeCompra.listaCompras[0].dni}</p>
+        <p>Tel: ${resumenDeCompra.listaCompras[0].tel}</p>
+        <p>${resumenDeCompra.listaCompras[0].email}</p>`;
+
+    resumenDatos.innerHTML = codeDatos;
+
+    let serviciosComprados = resumenDeCompra.listaCompras[1];
+    serviciosComprados.forEach((servicio) => {
+        let codeServicios = `<div>
+                            <p>${servicio.producto}</p>
+                            <p>$${servicio.precio}.-</p>
+                        </div>`;
+        resumenServicios.innerHTML += codeServicios;
+    })
+
+    let precioFinal = resumenDeCompra.precioFinal();
+    resumenPrecio.innerHTML = `Precio total: $${precioFinal}.-`
+}
+
 function prepararPanelFechas() {
     const fechasManejo = document.getElementById('horarios__manejo');
     const fechasTeorico = document.getElementById('horarios__teorico');
@@ -383,7 +511,7 @@ function prepararPanelFechas() {
     resumenDeCompra.listaCompras[1].forEach((compra) => {
         if (compra.producto == 'Manejo básico' || compra.producto == 'Manejo avanzado') {
             fechasManejo.classList.remove('horarios-disabled')
-        } else if (compra.producto == 'Mecánica básica' || compra.producto == 'Exámen teórico' || compra.producto == 'Gestor de trámites') {
+        } else {
             fechasTeorico.classList.remove('horarios-disabled')
         }
     })
@@ -408,14 +536,20 @@ function formSliderLeft() {
 
 function autitoAvanzar() {
     let distanciaDots = (Math.floor(dots[1].getBoundingClientRect().left)) - (Math.floor(dots[0].getBoundingClientRect().left))
-        autito.style.transform = 'translateX(' + (distanciaDots * slideIndex) + 'px)';
-        line.style.width = (distanciaDots * slideIndex) + 'px';
+    autito.style.transform = 'translateX(' + (distanciaDots * slideIndex) + 'px)';
+    line.style.width = (distanciaDots * slideIndex) + 'px';
 
 }
 function autitoVolver() {
     let distanciaDots = (Math.floor(dots[1].getBoundingClientRect().left)) - (Math.floor(dots[0].getBoundingClientRect().left))
-        autito.style.transform = 'translateX(' + (distanciaDots * slideIndex) + 'px)';
-        line.style.width = (distanciaDots * slideIndex) + 'px';
+    autito.style.transform = 'translateX(' + (distanciaDots * slideIndex) + 'px)';
+    line.style.width = (distanciaDots * slideIndex) + 'px';
+}
+function autitoFade() {
+    autito.style.opacity = '0';
+    for (dot of dots) {
+        dot.classList.add("dot-check")
+    }
 }
 function dotCheck() {
     for (let i = 0; i < dots.length; i++) {
@@ -427,3 +561,185 @@ function dotCheck() {
     }
 }
 
+function generarBotonConfirmar () {
+    botonSiguiente.classList.add('compra__boton-confirmar');
+    botonSiguiente.innerText = 'Confirmar';
+}
+function recuperarBotonSiguiente () {
+    botonSiguiente.classList.remove('compra__boton-confirmar');
+    botonSiguiente.innerText = 'Siguiente';
+}
+
+function confirmarCompra() {
+    //reset del form
+    modalComprar.classList.remove('comprar-success', 'comprar-active');
+    autito.style.opacity = '1';
+    slideIndex = 1;
+    formSliderLeft();
+    restablecerInputs();
+    recuperarBotonSiguiente();
+    recuperarBotonCalendly();
+
+    //submit del form, se haria si hay backend
+    // formularioSlider.submit()
+
+    localStorage.removeItem('carrito');
+
+    modalComprar.addEventListener('click', ()=> {
+        modalComprar.classList.remove("comprar-active");
+    })
+}
+
+function recuperarBotonCalendly() {
+    calendlyAgendado = false;
+    let calendlyButton = document.getElementsByClassName('calendly__btn');
+    calendlyButton[0].innerText = 'Agendar llamado';
+    calendlyButton[0].classList.remove('calendly__btn-success');
+
+}
+function restablecerInputs() {
+    datosNombre.value = '';
+    datosDni.value = '';
+    datosTel.value = '';
+    datosEmail.value = '';
+
+    datosNombre.classList.remove('input-error', 'input-success');
+    datosDni.classList.remove('input-error', 'input-success');
+    datosTel.classList.remove('input-error', 'input-success');
+    datosEmail.classList.remove('input-error', 'input-success');
+
+    let cursosCompra = document.getElementsByClassName('compra__servicio')
+    for (curso of cursosCompra) {
+        curso.checked = false;
+    }
+    let formPrecios = document.getElementsByClassName('compra__precio');
+    for (precio of formPrecios) {
+        precio.style.opacity = '.3';
+    }
+    for (input of horariosInputs) {
+        input.checked = false;
+    }
+
+    resumenDatos.innerHTML = '';
+    resumenServicios.innerHTML = '';
+    resumenPrecio.innerHTML = '';
+
+    
+}
+
+function continuarCompraPendiente() {
+    switch (resumenDeCompra.listaCompras.length) {
+        case 1:
+            recuperarDatos();
+            break;
+        case 2:
+            recuperarDatos();
+            recuperarServicios();
+            break;
+        case 3:
+            recuperarDatos();
+            recuperarServicios();
+            recuperarHorarios();
+            break;
+        }
+}
+
+function recuperarDatos() {
+    let datos = resumenDeCompra.listaCompras[0];
+    datosNombre.value = datos.nombre;
+    datosDni.value = datos.dni;
+    datosTel.value = datos.tel;
+    datosEmail.value = datos.email;
+    formSliderRight();
+}
+function recuperarServicios() {
+    let comprados = resumenDeCompra.listaCompras[1];
+    let formServicios = document.getElementsByClassName('compra__servicio')
+    comprados.forEach((compra) => {
+        for (servicio of formServicios) {
+            if (compra.id === servicio.id) {
+                servicio.click();
+            }
+        }
+    })
+    prepararPanelFechas();
+    formSliderRight();
+}
+function recuperarHorarios() {
+    let horariosGuardados = resumenDeCompra.listaCompras[2];
+    horariosGuardados.forEach((horario) => {
+        for (input of horariosInputs) {
+            if (horario.horario === input.value) {
+                input.click();
+            }
+        }
+    })
+    formSliderRight();
+}
+
+function checkDatosContacto() {
+        let contactoNombreValue = contactoNombre.value.trim();
+        let contactoTelValue = contactoTelefono.value.trim();
+        let contactoEmailValue = contactoEmail.value.trim();
+        let contactoMensajeValue = contactoMensaje.value.trim();
+
+        let nombreCheck = false;
+        let telCheck = false;
+        let emailCheck = false;
+        let mensajeCheck = false;
+
+        contactoNombre.classList.remove('input-error', 'input-success');
+        contactoTelefono.classList.remove('input-error', 'input-success');
+        contactoEmail.classList.remove('input-error', 'input-success');
+    
+        if (contactoNombreValue === '') {
+            nombreCheck = inputError(contactoNombre, 'Este campo no puede estar vacío')
+        } else if (!isText(contactoNombreValue)) {
+            nombreCheck = inputError(contactoNombre, 'El nombre ingresado no es válido')
+        } else {
+            nombreCheck = inputSuccess(contactoNombre);
+        }
+        
+        if (contactoTelValue === '') {
+            telCheck = inputError(contactoTelefono, 'Este campo no puede estar vacío')
+        } else if (contactoTelValue.length < 6) {
+            telCheck = inputError(contactoTelefono, 'El número ingresado no es válido')
+        } else if (!isTel(contactoTelValue)) {
+            telCheck = inputError(contactoTelefono, 'Ingrese sólo números, sin otros caracteres')
+        } else {
+            telCheck = inputSuccess(contactoTelefono);
+        }
+        
+        if (contactoEmailValue === '') {
+            emailCheck = inputError(contactoEmail, 'Este campo no puede estar vacío')
+        } else if (!isEmail(contactoEmailValue)) {
+            emailCheck = inputError(contactoEmail, 'Formato de email no válido. Ejemplo: salerno@autoescuela.com')
+        } else {
+            emailCheck = inputSuccess(contactoEmail);
+        }
+        
+        if (contactoMensajeValue === '') {
+            mensajeCheck = inputError(contactoMensaje, 'Este campo no puede estar vacío')
+        } else {
+            mensajeCheck = inputSuccess(contactoMensaje);
+        }
+
+        if (nombreCheck && emailCheck && telCheck && mensajeCheck) {
+            return true
+        } else {
+            return false
+        }
+}
+
+function mostrarModalGracias() {
+    modalGracias.style.visibility = 'visible';
+    modalGracias.style.opacity = '1';
+
+    modalGracias.addEventListener('click', ()=>{
+        modalGracias.style.opacity = '0';
+        modalGracias.style.visibility = 'hidden';
+        setTimeout(()=>{
+            contactoForm.submit()
+        }, 500)
+    })
+}

@@ -38,12 +38,31 @@
 
     <section id="nosotros" class="nosotros contenedor">
         <h2>¿Quienes somos?</h2>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta numquam nam eligendi iste delectus autem sit nisi magnam. Quibusdam harum, consequuntur voluptatum nisi quisquam officiis omnis. Aperiam est aspernatur ex.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta numquam nam eligendi iste delectus autem sit nisi magnam. Quibusdam harum, consequuntur voluptatum nisi quisquam officiis omnis. Aperiam est aspernatur ex.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta numquam nam eligendi iste delectus autem sit nisi magnam. Quibusdam harum, consequuntur voluptatum nisi quisquam officiis omnis. Aperiam est aspernatur ex.</p>
+        <p>Somos una nueva escuela de manejo nacida en 2019, con la misión de ofrecer un servicio de aprendizaje de manejo integral, ofreciendo una amplia gama de servicios y soluciones a los problemas presentes de los estudiantes. Creemos en la excelencia de lo que hacemos, combinando prácticas al volante con cursos y servicios fuera del vehículo que capacitan de forma integral y completa a nuestros conductores, preparándolos para manejar con responsabilidad y libertad, disfrutando cada paso. Contamos con un equipo de excelentes profesionales, vehículos seguros con doble comando y una plataforma de aprendizaje virtual.</p>
     </section>
 
-    
+    <section class="eligen">
+        <div class="contenedor">
+            <h2>¿Por qué nos eligen?</h2>
+            <div class="contenedor__eligen">
+                <article class="item__eligen">
+                    <h3>Excelencia</h3>
+                    <i class="far fa-handshake"></i>
+                    <p>Nuestro equipo cuenta con profesionales especializados y actualizados, con vasta experiencia en el rubro. Nuestros expertos están capacitados para brindarte siempre la mejor atención y el mejor servicio.</p>
+                </article>
+                <article class="item__eligen">
+                    <h3>Seguridad</h3>
+                    <i class="fas fa-shield-alt"></i>
+                    <p>En Salerno Autoescuela la seguridad es lo primero. Contamos con estrictos protocolos y vehículos con doble comando, siempre tripulados por alguno de nuestros expertos, para que puedas aprender y practicar en un entorno seguro.</p>
+                </article>
+                <article class="item__eligen">
+                    <h3>Online</h3>
+                    <i class="fas fa-signal"></i>
+                    <p>Todos nuestros servicios se pueden adquirir de forma online y rápida. Contamos con cursos virtuales y materiales complementarios en nuestra plataforma, accesibles encualquier lugar y momento.</p>
+                </article>
+            </div>
+        </div>
+    </section>    
 
     <main id="cursos" class="cursos contenedor">
         <h2>Nuestros cursos</h2>
@@ -58,21 +77,31 @@
                 <h2>Comunicate con nosotros</h2>
                 <p>Si querés saber más, dejanos un mensaje y nos pondremos en contacto con vos!</p>
             
-                <form action="#" class="formulario-contacto">
+                <form action="#" id="formulario-contacto">
                     <input type="text" id="contacto-nombre" name="nombre" placeholder="Tu nombre"  class="formulario__input" maxlength="30">
-                    <label id="label-nombre" for="contacto-nombre"></label>
+                    <small></small>
+                    <!-- <label id="label-nombre" for="contacto-nombre"></label> -->
                     <input type="email" id="contacto-email" name="email" placeholder="Tu email"  class="formulario__input" maxlength="45">
-                    <label id="label-email" for="contacto-email"></label>
+                    <small></small>
+                    <!-- <label id="label-email" for="contacto-email"></label> -->
                     <input type="tel" id="contacto-telefono" name="telefono" placeholder="Tu numero de teléfono"  class="formulario__input">           
-                    <label id="label-telefono" for="contacto-telefono"></label>
+                    <small></small>
+                    <!-- <label id="label-telefono" for="contacto-telefono"></label> -->
                     <textarea name="mensaje" id="contacto-mensaje"  class="formulario__textarea" maxlength="255"></textarea>
-                    <label id="label-mensaje"for="contacto-mensaje"></label>
-                    <input type="submit" class="formulario__enviar" value="Enviar">
+                    <small></small>
+                    <!-- <label id="label-mensaje"for="contacto-mensaje"></label> -->
+                    <input type="submit" id="formulario__enviar" value="Enviar">
                 </form>
             </div>
         </div>
     </section>
-    
+    <div id="modal__gracias">
+        <div>
+            <h3>¡Gracias por tu mensaje!</h3>
+            <p>Pronto nos pondremos en contacto con vos.</p>
+            <i class="fas fa-car-side autito autito-success"></i>
+        </div>
+    </div>
     <!-- Formulario de compra -->
 
     <section id="comprar" class="comprar">
@@ -107,26 +136,28 @@
                     <div class="compra__slide" id="compra__cursos">
                         <h3>Elegí tu curso</h3>
                         <p>Seleccioná los servicios que quieras adquirir</p>
+                        <small id="compra__cursos-error"></small>
                         <div id="compra__cursos-contenedor"class="compra__cursos-contenedor">
                            <!-- cursos desde js -->
                         </div>
                     </div>
 
                     <div class="compra__slide" id="compra__horarios">
-                        <h3>Fecha y horario</h3>
+                        <h3>Horarios</h3>
                         <p>En Salerno Autoescuela trabajamos de Lunes a Sábados en múltiples horarios</p>
+                        <small id="compra__horarios-error"></small>
                         <div id="horarios__manejo">
                             <p>Elegí en qué horario estás disponible para tu curso de manejo</p>
                             <div class="contenedor__horarios-manejo">
                                 <div>
-                                    <input type="radio" name="horarios-manejo" id="horarios__manejo1" value="mañana">
+                                    <input type="radio" class="horarios__input" name="manejo" id="horarios__manejo1" value="mañana">
                                     <label for="horarios__manejo1">09:00 - 12:00 hs</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="horarios-manejo" id="horarios__manejo2" value="tarde">
+                                    <input type="radio" class="horarios__input" name="manejo" id="horarios__manejo2" value="tarde">
                                     <label for="horarios__manejo2">13:00 - 17:00 hs</label></div>
                                 <div>
-                                    <input type="radio" name="horarios-manejo" id="horarios__manejo3" value="noche">
+                                    <input type="radio" class="horarios__input" name="manejo" id="horarios__manejo3" value="noche">
                                     <label for="horarios__manejo3">17:00 - 20:00 hs</label>
                                 </div>      
                             </div>
@@ -135,22 +166,22 @@
                             <p>¿Qué horario preferís para tu curso teórico?</p>
                             <div class="contenedor__horarios-teorico">
                                 <div>
-                                    <input type="radio" name="horarios-teorico" id="horarios__teorico1" value="9-11">
+                                    <input type="radio" class="horarios__input" name="teorico" id="horarios__teorico1" value="9-11">
                                     <label for="horarios__teorico1">09:00 - 11:00 hs</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="horarios-teorico" id="horarios__teorico2" value="11-13">
+                                    <input type="radio" class="horarios__input" name="teorico" id="horarios__teorico2" value="11-13">
                                     <label for="horarios__teorico2">11:00 - 13:00 hs</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="horarios-teorico" id="horarios__teorico3" value="17-19">
+                                    <input type="radio" class="horarios__input" name="teorico" id="horarios__teorico3" value="17-19">
                                     <label for="horarios__teorico3">17:00 - 19:00 hs</label></div>
                                 <div>
-                                    <input type="radio" name="horarios-teorico" id="horarios__teorico4" value="19-21">
+                                    <input type="radio" class="horarios__input" name="teorico" id="horarios__teorico4" value="19-21">
                                     <label for="horarios__teorico4">19:00 - 21:00 hs</label>
                                 </div>      
                                 <div>
-                                    <input type="radio" name="horarios-teorico" id="horarios__teorico5" value="21-23">
+                                    <input type="radio" class="horarios__input" name="teorico" id="horarios__teorico5" value="21-23">
                                     <label for="horarios__teorico5">21:00 - 23:00 hs</label>
                                 </div>      
                             </div>
@@ -160,7 +191,10 @@
                     <div class="compra__slide" id="compra__entrevista">
                         <h3>Agendá una entrevista</h3>
                         <div class="contenedor__entrevista">
-                            <p>Clickeá el botón para agendar una entrevista con un coordinador de nuestro Equipo. En la llamada se ultimarán detalles sobre la fecha y horario de inicio de tus cursos y cómo abonar el servicio.</p>
+                            <div>
+                                <p>Clickeá el botón para agendar una entrevista con un coordinador de nuestro Equipo. En la llamada se ultimarán detalles sobre la fecha y horario de inicio de tus cursos y cómo abonar el servicio.</p>
+                                <small id="entrevista-error"></small>
+                            </div>
                             <!-- Principio del widget de enlace de Calendly -->
                             <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
                             <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
@@ -173,15 +207,24 @@
                         <h3>Resumen de compra</h3>
                         <p>Verifica que la información sea correcta</p>
                         <div class="contenedor__resumen">
-                            <div class="resumen__datos"></div>
-                            <div class="resumen__servicios"></div>
+                            <div id="resumen__datos"></div>
+                            <div id="resumen__servicios"></div>
                         </div>
+                        <p id="resumen__precio"></p>
                     </div>
                 </form>
             </div>
             <button id="comprar-cerrar"><i class="far fa-times-circle"></i></button>
             <button class="compra__boton" id="boton__volver">Volver</button>
             <button class="compra__boton" id="boton__siguiente">Siguiente</button>
+        </div>
+        <div id="compra__modal-success">
+            <h3>¡Listo! <i class="fas fa-car-side autito autito-success"></i></h3>
+            <p><span> Tus datos han sido cargados correctamente.</span></p>
+            <p>En tu entrevista se coordinará la fecha de inicio y se te enviará el link de pago para finalizar la compra.</p>
+            <p>Una vez confirmado el pago se te dará acceso a nuestra plataforma para alumnos y ya podrás empezar a aprender.</p>
+            <p>¡Gracias por contactarte con <span>Salerno Autoescuela</span>!</p>
+            <button id="compra__boton-success">¡Entendido!</button>
         </div>
     </section>
 

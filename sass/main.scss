@@ -29,7 +29,7 @@ html {
 }
 body {
     font-family: $fuente;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     line-height: 2;
     color: $negro;
     padding-top: 50px;
@@ -42,9 +42,22 @@ h1 {
 }
 h2 {
     font-family: $fuente;
-    font-size: 3rem;
+    font-size: 3.4rem;
     font-weight: 700;
     line-height: 1.4;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+    &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: '';
+        height: 5px;
+        width: 210px;
+        background-color: $naranja;
+        border-bottom-right-radius: 5px;
+    }
 }
 h3 {
     font-family: $fuente;
@@ -66,7 +79,7 @@ li {
 }
 
 .contenedor {
-    max-width: 1100px;
+    max-width: 1000px;
     width: 94%;
     margin: 0 auto;
 }
@@ -255,14 +268,75 @@ li {
         }
     }
 }
+// ========
+// NOSOTROS
+// ========
+
+.nosotros {
+    margin-top: 4rem;
+    p {
+        max-width: 768px;
+    }
+}
+
+// ======
+// ELIGEN
+// ======
+
+.eligen {
+    background-image: url(../img/imagen-eligen.jpg);
+    background-position: center center;
+    background-size: cover;
+    margin-top: 5rem;
+    padding: 4rem 0;
+
+    .contenedor {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 2rem;
+        border-radius: 16px;
+
+        .contenedor__eligen {
+            display: flex;
+            justify-content: space-around;
+            @media (max-width: 768px) {
+                flex-wrap: wrap;
+            }
+            .item__eligen {
+                text-align: center;
+                background-color: white;
+                margin: 1.6rem;
+                border-radius: 10px;
+                padding: 2rem;
+                box-shadow: 4px 6px 6px 0 rgba(0, 0, 0, .3);
+                transition: all .4s ease-in-out;
+                p {
+                    font-size: 1.6rem;
+                }
+                i {
+                    margin: 1.6rem 0;
+                    font-size: 4rem;
+                    padding: 1rem;
+                    transition: all .4s ease-in-out;
+                }
+                &:hover {
+                    transform: scale(1.1);
+                    i {
+                        color: #2ecc71;
+                    }
+                }
+            }
+        }
+    }
+}
 
 // ======
 // CURSOS
 // ======
 
 .cursos {
+    margin-top: 6rem;
     .cursos__lista {
-        max-width: 650px;
+        max-width: 768px;
         .cursos__item {
             border: 1px #ddd solid;
             border-radius: 10px;
@@ -275,6 +349,7 @@ li {
                 justify-content: space-between;
                 align-items: center;
                 padding: 0 2rem;
+                margin: 0 1rem;
                 position: relative;
                 transition: all .3s;
                 cursor: pointer;
@@ -292,11 +367,16 @@ li {
                 }
             }
             .cursos__info {
-                margin: 0 2rem 0rem 2rem;
+                margin: 0 1rem;
+                padding: 0 2rem;
                 max-height: 0;
                 overflow: hidden;
                 opacity: 0;
-                transition: all .3s;            
+                transition: all .3s;  
+                .cursos__precio {
+                    font-weight: 700;
+                    text-align: right;
+                }
            }
         }
         .cursos__item-active {
@@ -304,7 +384,7 @@ li {
             box-shadow: 0px 3px 6px 0 rgba(0, 0, 0, 0.2);
             .cursos__info {
                 opacity: 1;  
-                padding: 1rem 0;
+                padding: 2rem;
                 max-height: 500px;
                 border-top: 1px $naranja solid;                
            }
@@ -327,23 +407,23 @@ li {
     background-position: center center;
     background-size: cover;
     padding: 3rem 0;
-    margin-top: 4.4rem;
+    margin-top: 6rem;
     min-height: 500px;
     .contacto__info {
         background-color: rgba(255, 255, 255, 0.8);
         border-radius: 16px;
         padding: 2rem 3rem;
         max-width: 556px;
-        .formulario-contacto {
+        #formulario-contacto {
             margin: 2rem 0;
             display: flex;
             flex-direction: column;
-            label {
-                color: rgba(255, 0, 0, 0.726);
-                margin-top: -4px;
-                font-size: 1.4rem;
-                padding-left: 10px;
-            }
+            // label {
+            //     color: rgba(255, 0, 0, 0.726);
+            //     margin-top: -4px;
+            //     font-size: 1.4rem;
+            //     padding-left: 10px;
+            // }
             .formulario__input, .formulario__textarea {
                 border: none;
                 margin-top: 1rem;
@@ -359,7 +439,7 @@ li {
                 height: 200px;
                 resize: none;
             }
-            .formulario__enviar {
+            #formulario__enviar {
                 align-self: flex-end;
                 margin-top: 1rem;
                 padding: 1rem;
@@ -378,8 +458,52 @@ li {
                     background-color: $naranjaOscuro;
                 }
             }
+            small {
+                color: #e74c3c;
+                margin-left: 1rem;
+            }
+            .input-success {
+                border: 3px solid #2ecc71;
+            }
+            .input-error {
+                border: 3px solid #e74c3c;
+            }
         }
     }
+}
+
+#modal__gracias {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    background-color: rgb(255, 154, 71, .7);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    div {
+        background-color: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        padding: 2rem;
+        border: 3px #2ecc71 solid;
+        border-radius: 10px;
+        h3 {
+            font-size: 3rem;
+        }
+        .autito-success {
+            font-size: 3.2rem;
+            margin-top: 1rem;
+            color: #2ecc71;
+            animation-name: autito-andar;
+            animation-duration: .3s;
+            animation-iteration-count: infinite;
+        }
+    }
+
 }
 // ==================
 // FORMULARIO COMPRAR
@@ -397,16 +521,16 @@ li {
     background-color: rgb(255, 154, 71, .7);
     visibility: hidden;
     opacity: 0;
-    transition: .5s;
+    transition: 1s;
 
     .contenedor__compra {  //modal de compra
         max-width: 95%;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.9);
         position: relative;
         border-radius: 10px;
         margin-top: -150%;
         padding: 1rem 2rem;
-        transition: all ease-in-out .3s;
+        transition: all ease-in-out .5s .3s;
 
         #comprar-cerrar, .compra__boton {
             border: none;
@@ -469,6 +593,17 @@ li {
                 }
             }
         }
+        .compra__boton-confirmar {
+            &:nth-of-type(3) {
+                background-color: #2ecc71;
+                &:hover {
+                    background-color: #20a758;
+                }
+                &:after {
+                    content: "\f00c";
+                }
+            }
+        }
         .contenedor__barra-progreso {
             width: 100%;
             padding: 3rem 7.5%;
@@ -496,12 +631,12 @@ li {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    transition: background-color .3s .3s;
+                    transition: background-color .5s .3s;
                     z-index: 2;
                     i {
                         color: white;
                         opacity: 0;
-                        transition: opacity .3s .3s;
+                        transition: opacity .5s .3s;
                     }
                 }
                 
@@ -519,7 +654,7 @@ li {
                     border-radius: 4px;
                     background-color: #2ecc71;
                     box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, .3);
-                    transition: width .5s ease-in-out;
+                    transition: width .8s ease-in-out;
                     z-index: 1;
                 }
                 .autito {
@@ -529,7 +664,7 @@ li {
                     color: $naranjaOscuro;
                     left: 0;
                     margin-left: -5px;
-                    transition: transform .5s ease-in-out;
+                    transition: all .8s ease-in-out;
                 }
             }
         }
@@ -543,7 +678,7 @@ li {
                 display: flex;
                 padding-bottom: 5rem;
                 max-width: 700px;
-                transition: transform .5s ease-in-out;
+                transition: transform .8s ease-in-out;
                 @media (max-width: 768px) {
                     max-width: 500px;
                 }
@@ -563,8 +698,7 @@ li {
                             background-color: $naranja;
                             border-bottom-right-radius: 5px;
                         }
-                    }
-                    
+                    }   
                 }
                 #compra__datosPersonales {
                     p {
@@ -597,14 +731,12 @@ li {
                     }
                     .input-error {
                         border: 3px solid #e74c3c;
-                        // margin-bottom: .5rem;
                     }
                 }
                 #compra__cursos {
                     .compra__cursos-contenedor {
                         display: flex;
                         justify-content: space-between;
-                        margin-top: 2rem;
                         flex-wrap: wrap;
                         width: 100%;
                         label {
@@ -620,12 +752,20 @@ li {
                             font-weight: 700;
                             flex: 0 0 30%;
                             text-align: center;
+                            opacity: .3;
                         }
+                    }
+                    #compra__cursos-error {
+                        color: #e74c3c;
+                        font-size: 1.4rem;
                     }
                 }
                 #compra__horarios {
+                    #compra__horarios-error {
+                        color: #e74c3c;
+                        font-size: 1.4rem;
+                    }
                     #horarios__manejo {
-                        margin-top: 2rem;
                         p {
                             font-weight: 700;
                         }
@@ -669,8 +809,13 @@ li {
                         @media (max-width: 768px) {
                             display: block;
                         }
-                        p {
+                        div {
                             flex-basis: 50%;
+                            #entrevista-error {
+                                color: #e74c3c;
+                                font-size: 1.4rem;
+                                font-weight: 700;
+                            }
                         }
                         .calendly__btn {
                             align-self: center;
@@ -693,8 +838,82 @@ li {
                                 margin: 3rem auto;
                             }
                         }
+                        .calendly__btn-success {
+                            pointer-events: none;
+                            background-color: #2ecc71;
+                            &:after {
+                                content: "\f274"
+                            }
+                        }
                     }
                 }
+                #compra__resumen {
+                    .contenedor__resumen {
+                        margin: 1.4rem 0;
+                        padding: .5rem 0;
+                        border-top: $naranja 3px solid;
+                        border-bottom: $naranja 3px solid;
+                        display: flex;
+                        justify-content: space-between;
+                        #resumen__datos, #resumen__servicios {
+                            flex-basis: 45%;
+                            font-weight: 700;
+                        }
+                        #resumen__servicios {
+                            div {
+                                display: flex;
+                                justify-content: space-between;
+                            }
+                        }
+                    }
+                    #resumen__precio {
+                        font-weight: 900;
+                        padding-top: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    #compra__modal-success {
+        position: fixed;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 2rem 4rem;
+        border-radius: 10px;
+        width: 95%;
+        max-width: 500px;
+        visibility: hidden;
+        opacity: 0;
+        transition: all ease-in-out .6s 1s;
+        h3 {
+            font-size: 3rem;
+            text-align: center;
+        }
+        .autito-success {
+            color: #2ecc71;
+            animation-name: autito-andar;
+            animation-duration: .3s;
+            animation-iteration-count: infinite;
+        }
+        span {
+            font-weight: 700;
+        }
+        #compra__boton-success {
+            display: block;
+            text-align: center;
+            border: none;
+            font-size: 2rem;
+            background-color: #2ecc71;
+            padding: 1rem 1.6rem;
+            font-weight: 700;
+            color: white;
+            margin: 1rem auto;
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: #20a758;
             }
         }
     }
@@ -704,10 +923,22 @@ li {
     opacity: 1;
     .contenedor__compra {
         margin-top: 0;
-        transition: all ease-in-out .5s .2s;
     }
 }
-
+.comprar-success {
+    .contenedor__compra {
+        margin-top: -150%;
+    }
+    #compra__modal-success {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+@keyframes autito-andar {
+    0% {transform: translateY(0px)}
+    50% {transform: translateY(5px)}
+    100% {transform: translateY(0px)}
+}
 // ======
 // FOOTER
 //=======

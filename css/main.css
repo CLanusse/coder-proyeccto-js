@@ -20,7 +20,7 @@ html {
 
 body {
   font-family: "Lato", sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 2;
   color: #111111;
   padding-top: 50px;
@@ -34,9 +34,22 @@ h1 {
 
 h2 {
   font-family: "Lato", sans-serif;
-  font-size: 3rem;
+  font-size: 3.4rem;
   font-weight: 700;
   line-height: 1.4;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+h2::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  height: 5px;
+  width: 210px;
+  background-color: #fe401e;
+  border-bottom-right-radius: 5px;
 }
 
 h3 {
@@ -59,7 +72,7 @@ li {
 }
 
 .contenedor {
-  max-width: 1100px;
+  max-width: 1000px;
   width: 94%;
   margin: 0 auto;
 }
@@ -248,8 +261,64 @@ li {
   line-height: 1.4;
 }
 
+.nosotros {
+  margin-top: 4rem;
+}
+.nosotros p {
+  max-width: 768px;
+}
+
+.eligen {
+  background-image: url(../img/imagen-eligen.jpg);
+  background-position: center center;
+  background-size: cover;
+  margin-top: 5rem;
+  padding: 4rem 0;
+}
+.eligen .contenedor {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 16px;
+}
+.eligen .contenedor .contenedor__eligen {
+  display: flex;
+  justify-content: space-around;
+}
+@media (max-width: 768px) {
+  .eligen .contenedor .contenedor__eligen {
+    flex-wrap: wrap;
+  }
+}
+.eligen .contenedor .contenedor__eligen .item__eligen {
+  text-align: center;
+  background-color: white;
+  margin: 1.6rem;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 4px 6px 6px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease-in-out;
+}
+.eligen .contenedor .contenedor__eligen .item__eligen p {
+  font-size: 1.6rem;
+}
+.eligen .contenedor .contenedor__eligen .item__eligen i {
+  margin: 1.6rem 0;
+  font-size: 4rem;
+  padding: 1rem;
+  transition: all 0.4s ease-in-out;
+}
+.eligen .contenedor .contenedor__eligen .item__eligen:hover {
+  transform: scale(1.1);
+}
+.eligen .contenedor .contenedor__eligen .item__eligen:hover i {
+  color: #2ecc71;
+}
+
+.cursos {
+  margin-top: 6rem;
+}
 .cursos .cursos__lista {
-  max-width: 650px;
+  max-width: 768px;
 }
 .cursos .cursos__lista .cursos__item {
   border: 1px #ddd solid;
@@ -264,6 +333,7 @@ li {
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
+  margin: 0 1rem;
   position: relative;
   transition: all 0.3s;
   cursor: pointer;
@@ -281,11 +351,16 @@ li {
   font-size: 2rem;
 }
 .cursos .cursos__lista .cursos__item .cursos__info {
-  margin: 0 2rem 0rem 2rem;
+  margin: 0 1rem;
+  padding: 0 2rem;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transition: all 0.3s;
+}
+.cursos .cursos__lista .cursos__item .cursos__info .cursos__precio {
+  font-weight: 700;
+  text-align: right;
 }
 .cursos .cursos__lista .cursos__item-active {
   margin-bottom: 1rem;
@@ -293,7 +368,7 @@ li {
 }
 .cursos .cursos__lista .cursos__item-active .cursos__info {
   opacity: 1;
-  padding: 1rem 0;
+  padding: 2rem;
   max-height: 500px;
   border-top: 1px #fe401e solid;
 }
@@ -309,7 +384,7 @@ li {
   background-position: center center;
   background-size: cover;
   padding: 3rem 0;
-  margin-top: 4.4rem;
+  margin-top: 6rem;
   min-height: 500px;
 }
 .contacto .contacto__info {
@@ -318,33 +393,27 @@ li {
   padding: 2rem 3rem;
   max-width: 556px;
 }
-.contacto .contacto__info .formulario-contacto {
+.contacto .contacto__info #formulario-contacto {
   margin: 2rem 0;
   display: flex;
   flex-direction: column;
 }
-.contacto .contacto__info .formulario-contacto label {
-  color: rgba(255, 0, 0, 0.726);
-  margin-top: -4px;
-  font-size: 1.4rem;
-  padding-left: 10px;
-}
-.contacto .contacto__info .formulario-contacto .formulario__input, .contacto .contacto__info .formulario-contacto .formulario__textarea {
+.contacto .contacto__info #formulario-contacto .formulario__input, .contacto .contacto__info #formulario-contacto .formulario__textarea {
   border: none;
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 4px;
   width: 100%;
 }
-.contacto .contacto__info .formulario-contacto .formulario__input:focus, .contacto .contacto__info .formulario-contacto .formulario__textarea:focus {
+.contacto .contacto__info #formulario-contacto .formulario__input:focus, .contacto .contacto__info #formulario-contacto .formulario__textarea:focus {
   outline: none;
   border-bottom: 3px solid #fe401e;
 }
-.contacto .contacto__info .formulario-contacto .formulario__textarea {
+.contacto .contacto__info #formulario-contacto .formulario__textarea {
   height: 200px;
   resize: none;
 }
-.contacto .contacto__info .formulario-contacto .formulario__enviar {
+.contacto .contacto__info #formulario-contacto #formulario__enviar {
   align-self: flex-end;
   margin-top: 1rem;
   padding: 1rem;
@@ -355,13 +424,56 @@ li {
   color: white;
   font-weight: 700;
 }
-.contacto .contacto__info .formulario-contacto .formulario__enviar:focus {
+.contacto .contacto__info #formulario-contacto #formulario__enviar:focus {
   outline: none;
   background-color: #af230a;
 }
-.contacto .contacto__info .formulario-contacto .formulario__enviar:hover {
+.contacto .contacto__info #formulario-contacto #formulario__enviar:hover {
   cursor: pointer;
   background-color: #af230a;
+}
+.contacto .contacto__info #formulario-contacto small {
+  color: #e74c3c;
+  margin-left: 1rem;
+}
+.contacto .contacto__info #formulario-contacto .input-success {
+  border: 3px solid #2ecc71;
+}
+.contacto .contacto__info #formulario-contacto .input-error {
+  border: 3px solid #e74c3c;
+}
+
+#modal__gracias {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  background-color: rgba(255, 154, 71, 0.7);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+#modal__gracias div {
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  padding: 2rem;
+  border: 3px #2ecc71 solid;
+  border-radius: 10px;
+}
+#modal__gracias div h3 {
+  font-size: 3rem;
+}
+#modal__gracias div .autito-success {
+  font-size: 3.2rem;
+  margin-top: 1rem;
+  color: #2ecc71;
+  animation-name: autito-andar;
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
 }
 
 .comprar {
@@ -376,16 +488,16 @@ li {
   background-color: rgba(255, 154, 71, 0.7);
   visibility: hidden;
   opacity: 0;
-  transition: 0.5s;
+  transition: 1s;
 }
 .comprar .contenedor__compra {
   max-width: 95%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   position: relative;
   border-radius: 10px;
   margin-top: -150%;
   padding: 1rem 2rem;
-  transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.5s 0.3s;
 }
 .comprar .contenedor__compra #comprar-cerrar, .comprar .contenedor__compra .compra__boton {
   border: none;
@@ -452,6 +564,15 @@ li {
     right: 5%;
   }
 }
+.comprar .contenedor__compra .compra__boton-confirmar:nth-of-type(3) {
+  background-color: #2ecc71;
+}
+.comprar .contenedor__compra .compra__boton-confirmar:nth-of-type(3):hover {
+  background-color: #20a758;
+}
+.comprar .contenedor__compra .compra__boton-confirmar:nth-of-type(3):after {
+  content: "";
+}
 .comprar .contenedor__compra .contenedor__barra-progreso {
   width: 100%;
   padding: 3rem 7.5%;
@@ -480,13 +601,13 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s 0.3s;
+  transition: background-color 0.5s 0.3s;
   z-index: 2;
 }
 .comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso .dot i {
   color: white;
   opacity: 0;
-  transition: opacity 0.3s 0.3s;
+  transition: opacity 0.5s 0.3s;
 }
 .comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso .dot-check {
   background-color: #2ecc71;
@@ -502,7 +623,7 @@ li {
   border-radius: 4px;
   background-color: #2ecc71;
   box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.3);
-  transition: width 0.5s ease-in-out;
+  transition: width 0.8s ease-in-out;
   z-index: 1;
 }
 .comprar .contenedor__compra .contenedor__barra-progreso .barra-progreso .autito {
@@ -512,7 +633,7 @@ li {
   color: #af230a;
   left: 0;
   margin-left: -5px;
-  transition: transform 0.5s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
 .comprar .contenedor__compra .compra__carousel {
   min-height: 450px;
@@ -523,7 +644,7 @@ li {
   display: flex;
   padding-bottom: 5rem;
   max-width: 700px;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.8s ease-in-out;
 }
 @media (max-width: 768px) {
   .comprar .contenedor__compra .compra__carousel .formulario__compra {
@@ -581,7 +702,6 @@ li {
 .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__cursos .compra__cursos-contenedor {
   display: flex;
   justify-content: space-between;
-  margin-top: 2rem;
   flex-wrap: wrap;
   width: 100%;
 }
@@ -598,9 +718,15 @@ li {
   font-weight: 700;
   flex: 0 0 30%;
   text-align: center;
+  opacity: 0.3;
 }
-.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__manejo {
-  margin-top: 2rem;
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__cursos #compra__cursos-error {
+  color: #e74c3c;
+  font-size: 1.4rem;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #compra__horarios-error {
+  color: #e74c3c;
+  font-size: 1.4rem;
 }
 .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__horarios #horarios__manejo p {
   font-weight: 700;
@@ -644,8 +770,13 @@ li {
     display: block;
   }
 }
-.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista p {
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista div {
   flex-basis: 50%;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista div #entrevista-error {
+  color: #e74c3c;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista .calendly__btn {
   align-self: center;
@@ -670,6 +801,75 @@ li {
     margin: 3rem auto;
   }
 }
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista .calendly__btn-success {
+  pointer-events: none;
+  background-color: #2ecc71;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__entrevista .contenedor__entrevista .calendly__btn-success:after {
+  content: "";
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__resumen .contenedor__resumen {
+  margin: 1.4rem 0;
+  padding: 0.5rem 0;
+  border-top: #fe401e 3px solid;
+  border-bottom: #fe401e 3px solid;
+  display: flex;
+  justify-content: space-between;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__resumen .contenedor__resumen #resumen__datos, .comprar .contenedor__compra .compra__carousel .formulario__compra #compra__resumen .contenedor__resumen #resumen__servicios {
+  flex-basis: 45%;
+  font-weight: 700;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__resumen .contenedor__resumen #resumen__servicios div {
+  display: flex;
+  justify-content: space-between;
+}
+.comprar .contenedor__compra .compra__carousel .formulario__compra #compra__resumen #resumen__precio {
+  font-weight: 900;
+  padding-top: 1rem;
+}
+.comprar #compra__modal-success {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem 4rem;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 500px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease-in-out 0.6s 1s;
+}
+.comprar #compra__modal-success h3 {
+  font-size: 3rem;
+  text-align: center;
+}
+.comprar #compra__modal-success .autito-success {
+  color: #2ecc71;
+  animation-name: autito-andar;
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
+}
+.comprar #compra__modal-success span {
+  font-weight: 700;
+}
+.comprar #compra__modal-success #compra__boton-success {
+  display: block;
+  text-align: center;
+  border: none;
+  font-size: 2rem;
+  background-color: #2ecc71;
+  padding: 1rem 1.6rem;
+  font-weight: 700;
+  color: white;
+  margin: 1rem auto;
+}
+.comprar #compra__modal-success #compra__boton-success:focus {
+  outline: none;
+}
+.comprar #compra__modal-success #compra__boton-success:hover {
+  cursor: pointer;
+  background-color: #20a758;
+}
 
 .comprar-active {
   visibility: visible;
@@ -677,9 +877,27 @@ li {
 }
 .comprar-active .contenedor__compra {
   margin-top: 0;
-  transition: all ease-in-out 0.5s 0.2s;
 }
 
+.comprar-success .contenedor__compra {
+  margin-top: -150%;
+}
+.comprar-success #compra__modal-success {
+  visibility: visible;
+  opacity: 1;
+}
+
+@keyframes autito-andar {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 .footer {
   background-color: #222222;
   padding: 2rem 0;

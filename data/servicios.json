@@ -2,31 +2,31 @@
 {
     "id": "manejo1",
     "nombre": "Manejo básico",
-    "precio": 8500,
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+    "precio": 6000,
+    "desc": "Con este curso aprenderás todo lo necesario para manejar dentro de la ciudad y obtener tu carnet de conducir. Con nuestro programa aprenderás todos los conceptos básicos sobre cómo funciona y cómo manejar tu auto. Cuenta de 10 clases presenciales y 12hs de experiencia al volante, más material complementario online en nuestra plataforma."
 },
 {   
     "id": "manejo2",
     "nombre": "Manejo avanzado",
-    "precio":6000,
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+    "precio":5000,
+    "desc": "Perdele el miedo a la ruta y a la alta velocidad con nuestro programa de manejo avanzado. Con este curso perfeccionarás tu técnica al volante y le sacarás el máximo provecho a tu vehículo. Como manejar a velocidades altas en ruta/autopista, códigos de seguridad, prevención de accidentes, terrenos sinuosos, y más. Con nuestro programa estarás listo para viajar con tu auto a donde quieras. Cuenta de 8 clases presenciales y 10hs de experiencia al volante (8 en ruta/autopista), más material complementario online en nuestra plataforma."
 },
 {
     "id": "mecanica",
     "nombre": "Mecánica básica",
-    "precio": 5500,
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+    "precio": 4000,
+    "desc": "¡No te quedes a pata! Aprendé todo sobre el funcionamiento de tu auto y cómo mantenerlo a punto. Cuidados, mantenimiento, seguridad, qué hacer en caso de fallas, y mucho más. Teoría y práctica real con un experto. Estate siempre listo y viajá sin miedo. 4 clases virtuales y 4 clases presenciales de 1hs, más material complementario onnline."
 },
 {
     "id": "teorico",
     "nombre": "Exámen teórico",
-    "precio": 2000,
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+    "precio": 3000,
+    "desc": "¿Querés sacar el carnet? ¡Nosotros te ayudamos a preparar tu exámen! En este curso revisaremos leyes, códigos y manuales, y aprenderás todos los conceptos necesarios para obtener tu acreditación. Cuenta de 6 clases 100% online con ejercicios y simulacro de exámen, más material complementario en nuestra plataforma."
 },
 {
     "id": "gestor",
     "nombre": "Gestor de trámites",
-    "precio": 3000,
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem necessitatibus nesciunt distinctio obcaecati commodi, minus in unde deserunt expedita aliquid fuga sequi aperiam nostrum, quae neque cupiditate. Saepe, blanditiis."
+    "precio": 2500,
+    "desc": "Trámites, papeles, turnos. ¡Despreocupate de todo eso! Nuestro equipo se encarga de todo. Preparate para sacar tu carnet y contratá uno de nuestros gestores para que se ocupe de todo ese tramiterío indeseable. Coordinamos cuando rendís, y ¡listo! Vos sólo te dedicás a practicar y aprender, que nosotros nos ocupamos del resto."
 }
 ]
