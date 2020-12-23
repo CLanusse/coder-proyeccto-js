@@ -691,7 +691,8 @@ function checkDatosContacto() {
         contactoNombre.classList.remove('input-error', 'input-success');
         contactoTelefono.classList.remove('input-error', 'input-success');
         contactoEmail.classList.remove('input-error', 'input-success');
-    
+        contactoMensaje.classList.remove('input-error', 'input-success');
+
         if (contactoNombreValue === '') {
             nombreCheck = inputError(contactoNombre, 'Este campo no puede estar vacío')
         } else if (!isText(contactoNombreValue)) {
