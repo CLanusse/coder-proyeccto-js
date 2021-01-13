@@ -349,11 +349,14 @@ function cargarEntrevista() {
     let small = document.getElementById('entrevista-error');
     if (calendlyAgendado === true) {
         small.innerText = '';
-        crearResumenCompra();
-        setTimeout(formSliderRight, 200);
+        // crearResumenCompra();
+        // setTimeout(formSliderRight, 200);
     } else {
         small.innerText = '*Debes agendar tu entrevista'
     }
+    // movido solo para prueba
+    crearResumenCompra();
+    setTimeout(formSliderRight, 200)
 }
 
 function mostrarModalConfirmar() {
@@ -522,7 +525,7 @@ function formSliderRight() {
     slideIndex++;
     formularioSlider.style.transform = 'translateX(' + (-size * slideIndex) +'px)';
 
-    autitoAvanzar();
+    moverAutito();
     dotCheck()
 }
 function formSliderLeft() {
@@ -530,21 +533,17 @@ function formSliderLeft() {
     slideIndex--;
     formularioSlider.style.transform = 'translateX(' + (-size * slideIndex) +'px)';
 
-    autitoVolver();
+    moverAutito();
     dotCheck()
 }
 
-function autitoAvanzar() {
+function moverAutito() {
     let distanciaDots = (Math.floor(dots[1].getBoundingClientRect().left)) - (Math.floor(dots[0].getBoundingClientRect().left))
     autito.style.transform = 'translateX(' + (distanciaDots * slideIndex) + 'px)';
     line.style.width = (distanciaDots * slideIndex) + 'px';
 
 }
-function autitoVolver() {
-    let distanciaDots = (Math.floor(dots[1].getBoundingClientRect().left)) - (Math.floor(dots[0].getBoundingClientRect().left))
-    autito.style.transform = 'translateX(' + (distanciaDots * slideIndex) + 'px)';
-    line.style.width = (distanciaDots * slideIndex) + 'px';
-}
+
 function autitoFade() {
     autito.style.opacity = '0';
     for (dot of dots) {
